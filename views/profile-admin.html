@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DLSU Arrows Express Line 1 Reservation - Profile</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="assets/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+      $(document).ready(function(){
+        // FOR TOOLTIP 
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(".edit-profile").click(function(){
+          window.location.href = "#profile-panel"
+        });
+      })
+    </script>
+
+  </head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark" style="background-color: #00703c;">
+      <a class="navbar-brand" href="#"><img src="assets/img/weblogo-white" width="100"></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="home-admin.html">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="reserve-admin.html">Reserve</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="edit-admin.html">Edit<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bars fa-lg" style="color: white;"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="login.html">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container pt-5 m-auto">
+      <div class="row">
+        <div class="col-4 position-sticky">
+          <div class="profile text-center">
+            <img src="assets/img/sample-admin.png" class="mx-auto" id="icon">
+            <div class="profile-name">WONKA, WILLY</div>
+            <div class="profile-type pb-4">ADMINISTRATOR</div>
+            <button type="button" class="btn btn-outline-success edit-profile" id="edit">Edit Profile</button>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="reservations mb-4" id="reservation-panel">
+            <div class="reservations-title">PENDING RESERVATIONS</div>
+            <div class="reservations-line"></div>
+            <table class="table table-hover" id="profile-reservelist">
+              <thead>
+                <tr>
+                  <th scope="col">USERNAME</th>
+                  <th scope="col">DESTINATION</th>
+                  <th scope="col">DATE</th>
+                  <th scope="col">TIME</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ssalamante</td>
+                  <td>LGN > MNL</td>
+                  <td>3/4/20</td>
+                  <td>11:00AM</td>
+                  <td>
+                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
+                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>abenz</td>
+                  <td>MNL > LGN</td>
+                  <td>3/4/20</td>
+                  <td>9:30AM</td>
+                  <td>
+                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
+                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>pcarandang</td>
+                  <td>LGN > MNL</td>
+                  <td>3/3/20</td>
+                  <td>2:30PM</td>
+                  <td>
+                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
+                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>jenolee</td>
+                  <td>MNL > LGN</td>
+                  <td>3/2/20</td>
+                  <td>5:00PM</td>
+                  <td>
+                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
+                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>jacksonwang</td>
+                  <td>LGN > MNL</td>
+                  <td>3/2/20</td>
+                  <td>1:00PM</td>
+                  <td>
+                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
+                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="reservations m-auto" id="profile-panel">
+            <div class="reservations-title">YOUR PROFILE</div>
+            <div class="reservations-line"></div>
+            <form class="m-auto p-3" id="form-profile">
+              <div class="form-group">
+                <label for="user">Username</label>
+                <input type="text" class="form-control" id="user" placeholder="willywonka">
+              </div>
+              <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="Willy">
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Wonka">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="willy_wonka@dlsu.edu.ph">
+              </div>
+              <div class="form-group">
+                <label for="pass">Password</label>
+                <input type="password" class="form-control" id="pass" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-outline-success" id="edit">Submit Change</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

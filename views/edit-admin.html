@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DLSU Arrows Express Line 1 Reservation - Edit Reservations</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="assets/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+      $(document).ready(function(){
+        // FOR TOOLTIP 
+        $('[data-toggle="tooltip"]').tooltip();
+      })
+    </script>
+  </head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark" style="background-color: #00703c;">
+      <!-- <a class="navbar-brand" href="#"><img src="assets/dlsu.png" width="180"></a> -->
+      <a class="navbar-brand" href="#"><img src="assets/img/weblogo-white" width="100"></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="home-admin.html">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="reserve-admin.html">Reserve</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Edit<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile-admin.html">Profile</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bars fa-lg" style="color: white;"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="login.html">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container text-center p-4">
+      <img src="assets/img/edit-reservations.png" width="500">
+    </div>
+
+    <div class="container pt-2 pb-3">
+      <div class="row">
+        <div class="col">
+          <div class="edit-panel">
+            <form class="pt-4 pl-3 pr-3 pb-2">
+              <div class="form-row">
+                <div class="col">
+                  <select class="form-control">
+                    <option value="" selected disabled>Sort reservations by</option>
+                    <option value="">Username</option>
+                    <option value="">Date</option>
+                    <option value="">Route</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <div class="input-group-append" style="cursor: pointer;">
+                      <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="reservations-line"></div>
+            <div class="container pb-2 text-justify">
+              <div class="row">
+                <div class="col">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>USERNAME</th>
+                        <th>DESTINATION</th>
+                        <th>DATE</th>
+                        <th>TIME</th>
+                        <th>STATUS</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>ssalamante</td>
+                        <td>LGN > MNL</td>
+                        <td>3/4/20</td>
+                        <td>11:00AM</td>
+                        <td>PENDING</td>
+                        <td><i class="far fa-edit"></i></td>
+                      </tr>
+                      <tr>
+                        <td>abenz</td>
+                        <td>MNL > LGN</td>
+                        <td>3/4/20</td>
+                        <td>9:30AM</td>
+                        <td>PENDING</td>
+                        <td><i class="far fa-edit"></i></td>
+                      </tr>
+                      <tr>
+                        <td>pcarandang</td>
+                        <td>LGN > MNL</td>
+                        <td>3/3/20</td>
+                        <td>2:30PM</td>
+                        <td>PENDING</td>
+                        <td><i class="far fa-edit"></i></td>
+                      </tr>
+                      <tr>
+                        <td>jenolee</td>
+                        <td>MNL > LGN</td>
+                        <td>3/2/20</td>
+                        <td>5:00PM</td>
+                        <td>PENDING</td>
+                        <td><i class="far fa-edit"></i></td>
+                      </tr>
+                      <tr>
+                        <td>jacksonwang</td>
+                        <td>LGN > MNL</td>
+                        <td>3/2/20</td>
+                        <td>1:00PM</td>
+                        <td>PENDING</td>
+                        <td><i class="far fa-edit"></i></td>
+                      </tr>
+                      <tr>
+                        <td>jenolee</td>
+                        <td>LGN > MNL</td>
+                        <td>3/2/20</td>
+                        <td>7:00AM</td>
+                        <td>APPROVED</td>
+                        <td><i class="far fa-edit"></i></td>
+                      </tr>
+                      <tr>
+                        <td>gdragon</td>
+                        <td>LGN > MNL</td>
+                        <td>3/2/20</td>
+                        <td>7:00PM</td>
+                        <td>REJECTED</td>
+                        <td><i class="far fa-edit"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
