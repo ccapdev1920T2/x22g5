@@ -16,6 +16,10 @@ app.get('/', function(req, res) {
     res.render('login', {});
 });
 
+app.get('/login', function(req, res) {
+    res.render('login', {});
+});
+
 
 // Rider pages
 app.get('/home', function(req, res) {
@@ -23,11 +27,11 @@ app.get('/home', function(req, res) {
 });
 
 app.get('/reserve', function(req, res) {
-    res.render('login', {});
+    res.render('reserve', {});
 });
 
 app.get('/reserve-success', function(req, res) {
-    res.render('login', {});
+    res.render('reserve-success', {});
 });
 
 app.get('/profile', function(req, res) {
@@ -42,11 +46,11 @@ app.get('/home-admin', function(req, res) {
 });
 
 app.get('/reserve-admin', function(req, res) {
-    res.render('login', {});
+    res.render('reserve-admin', {});
 });
 
 app.get('/reserve-success-admin', function(req, res) {
-    res.render('login', {});
+    res.render('reserve-success-admin', {});
 });
 
 app.get('/edit-admin', function(req, res) {
