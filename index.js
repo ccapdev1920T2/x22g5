@@ -31,7 +31,7 @@ app.get('/reserve-success', function(req, res) {
 });
 
 app.get('/profile', function(req, res) {
-    // var username = req.params.title;
+    // var username = req.params.username;
     res.render('profile', {});
 });
 
@@ -54,7 +54,7 @@ app.get('/edit-admin', function(req, res) {
 });
 
 app.get('/profile-admin', function(req, res) {
-    // var username = req.params.title;
+    // var username = req.params.username;
     res.render('profile-admin', {});
 });
 
