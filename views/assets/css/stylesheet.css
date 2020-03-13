@@ -174,3 +174,7 @@ nav {
 table #edit-button {
     text-align: center;
 }
+
+.pointer {
+    cursor: pointer;
+}

@@ -127,7 +127,8 @@
             alert('You cannot choose Saturday nor Sunday!');
           } else {
             $("td").css('color', 'black');
-            this.style.color = "#00703c";
+            $("td").css('font-weight', 'normal');
+            this.setAttribute("style", "font-weight: bolder; color: #00703c;");
             day = $(this).text();
           }
         });
@@ -138,7 +139,8 @@
 
         $(".timelist-body").click(function(){
           $(".timelist-body").css('color', 'black');
-          this.style.color = "#00703c";
+          $(".timelist-body").css('font-weight', 'normal');
+          this.setAttribute("style", "font-weight: bolder; color: #00703c;");
 
           if (this.id == "mnllgn"){
             destination = "MNL > LGN";
@@ -170,7 +172,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-sm sticky-top navbar-dark" style="background-color: #00703c;">
       <!-- <a class="navbar-brand" href="#"><img src="assets/dlsu.png" width="180"></a> -->
-      <a class="navbar-brand" href="#"><img src="assets/img/weblogo-white.png" width="100"></a>
+      <a class="navbar-brand" href="home-admin.html"><img src="assets/img/weblogo-white.png" width="100"></a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -242,7 +244,7 @@
                   <th>S</th>
                 </tr>
               </thead>
-              <tbody id="cal-body">
+              <tbody id="cal-body" class="pointer">
               </tbody>
             </table>
           </div>
@@ -257,43 +259,43 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="calendar-title">MNL <i class="fas fa-angle-right"></i> LGN</div>
-                <div class="timelist-body" id="mnllgn">6:00AM</div>
+                <div class="timelist-body pointer" id="mnllgn">6:00AM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="mnllgn">7:30AM</div>
+                <div class="timelist-body pointer" id="mnllgn">7:30AM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="mnllgn">9:30AM</div>
+                <div class="timelist-body pointer" id="mnllgn">9:30AM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="mnllgn">11:00AM</div>
+                <div class="timelist-body pointer" id="mnllgn">11:00AM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="mnllgn">1:00PM</div>
+                <div class="timelist-body pointer" id="mnllgn">1:00PM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="mnllgn">2:30PM</div>
+                <div class="timelist-body pointer" id="mnllgn">2:30PM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="mnllgn">3:30PM</div>
+                <div class="timelist-body pointer" id="mnllgn">3:30PM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="mnllgn">5:00PM</div>
+                <div class="timelist-body pointer" id="mnllgn">5:00PM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="mnllgn">6:15PM</div>
+                <div class="timelist-body pointer" id="mnllgn">6:15PM</div>
               </div>
               <div class="carousel-item">
                 <div class="calendar-title">LGN <i class="fas fa-angle-right"></i> MNL</div>
-                <div class="timelist-body" id="lgnmnl">5:45AM</div>
+                <div class="timelist-body pointer" id="lgnmnl">5:45AM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="lgnmnl">7:00AM</div>
+                <div class="timelist-body pointer" id="lgnmnl">7:00AM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="lgnmnl">9:00AM</div>
+                <div class="timelist-body pointer" id="lgnmnl">9:00AM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="lgnmnl">11:00AM</div>
+                <div class="timelist-body pointer" id="lgnmnl">11:00AM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="lgnmnl">1:00PM</div>
+                <div class="timelist-body pointer" id="lgnmnl">1:00PM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="lgnmnl">2:30PM</div>
+                <div class="timelist-body pointer" id="lgnmnl">2:30PM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="lgnmnl">3:30PM</div>
+                <div class="timelist-body pointer" id="lgnmnl">3:30PM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="lgnmnl">5:00PM</div>
+                <div class="timelist-body pointer" id="lgnmnl">5:00PM</div>
                 <div class="line"></div>
-                <div class="timelist-body" id="lgnmnl">6:15PM</div>
+                <div class="timelist-body pointer" id="lgnmnl">6:15PM</div>
               </div>
             </div>
             <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
