@@ -11,13 +11,17 @@ app.use(express.static('views'));
 hbs.registerPartials(__dirname + '/views/partials');
 
 
-// Get login page
+// Get login and sign-up pages
 app.get('/', function(req, res) {
     res.render('login', {});
 });
 
 app.get('/login', function(req, res) {
     res.render('login', {});
+});
+
+app.get('/signup', function(req, res) {
+    res.render('signup', {});
 });
 
 

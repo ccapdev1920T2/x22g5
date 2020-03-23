@@ -44,3 +44,19 @@ body {
 #loginbutton {
     font-weight: 500px;
 }
+
+#signup-title {
+    font-family: 'Roboto Mono';
+    font-weight: 800;
+    font-size: 80px;
+    color: #00703c;
+    padding-top: 20px;
+}
+
+.signup-body {
+    border: 1.5px solid #E8E8E8;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Roboto Mono';
+    box-shadow: 0px 0px 4px gray;
+}
