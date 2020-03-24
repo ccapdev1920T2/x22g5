@@ -8,6 +8,7 @@ const app = express();
 const port = 3000;
 app.set('view engine', 'hbs');
 app.use(express.static('views'));
+app.use(express.static('public'));
 hbs.registerPartials(__dirname + '/views/partials');
 
 
