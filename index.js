@@ -46,7 +46,7 @@ app.get('/profile', function(req, res) {
     // var username = req.params.username;
     var firstname = 'Jeno';
     var lastname = 'Lee';
-    var priority = '1';
+    var priority = 'level 2 Students with Inter-Campus enrolled subjects or thesis';
     var username = 'jenolee';
     var email = 'lee_jeno@dlsu.edu.ph';
     var icon_rider = '/assets/img/rider.png';

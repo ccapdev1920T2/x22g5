@@ -1,7 +1,7 @@
 {
   "name": "x22g5",
   "version": "1.0.0",
-  "description": "",
+  "description": "This a web application that allows students and faculty members to make a reservation for the Arrows Express Line 1 shuttle service of DLSU.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,5 +19,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "hbs": "^4.1.0"
-  }
+  },
+  "devDependencies": {},
+  "keywords": []
 }
