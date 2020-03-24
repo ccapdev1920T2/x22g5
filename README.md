@@ -34,22 +34,17 @@ A step-by-step process on how to run the web application
 git clone https://github.com/ccapdev1920T2/x22g5.git
 ``````
 
-3. Locate folder and set as directory
-``````
-cd .../x22g5
-``````
-
-4. Install npm packages
+3. Install npm packages
 ``````
 npm install
 ``````
 
-5. Run server
+4. Run server
 ``````
 node index.js
 ``````
 
-6. Open browser and access application
+5. Open browser and access application
 ``````
 localhost:3000
 ``````
