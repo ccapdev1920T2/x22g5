@@ -64,9 +64,13 @@
       <div class="row">
         <div class="col-4 position-sticky">
           <div class="profile text-center">
-            <img src="assets/img/sample-admin.png" class="mx-auto" id="icon">
-            <div class="profile-name">WONKA, WILLY</div>
-            <div class="profile-type pb-4">ADMINISTRATOR</div>
+            <img src="{{this.icon}}" class="mx-auto" id="icon">
+            <div class="profile-name">
+              {{cap lastname}}, {{cap firstname}}
+            </div>
+            <div class="profile-type pb-4">
+              ADMINISTRATOR
+            </div>
             <button type="button" class="btn btn-outline-success edit-profile" id="edit">Edit Profile</button>
           </div>
         </div>
@@ -145,23 +149,23 @@
             <form class="m-auto p-3" id="form-profile">
               <div class="form-group">
                 <label for="user">Username</label>
-                <input type="text" class="form-control" id="user" placeholder="willywonka">
+                <input type="text" class="form-control" id="user" placeholder="{{username}}">
               </div>
               <div class="form-group">
                 <label for="firstname">First Name</label>
-                <input type="text" class="form-control" id="firstname" placeholder="Willy">
+                <input type="text" class="form-control" id="firstname" placeholder="{{firstname}}">
               </div>
               <div class="form-group">
                 <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" placeholder="Wonka">
+                <input type="text" class="form-control" id="lastname" placeholder="{{lastname}}">
               </div>
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="willy_wonka@dlsu.edu.ph">
+                <input type="email" class="form-control" id="email" placeholder="{{email}}">
               </div>
               <div class="form-group">
                 <label for="pass">Password</label>
-                <input type="password" class="form-control" id="pass" placeholder="Password">
+                <input type="password" class="form-control" id="pass">
               </div>
               <button type="submit" class="btn btn-outline-success" id="edit">Submit Change</button>
             </form>
