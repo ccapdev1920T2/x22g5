@@ -1,0 +1,180 @@
+﻿html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f7f7f7 !important; 
+}
+
+#body-font {
+    font-family: 'Roboto';
+    font-size: 20px;
+}
+
+nav {
+    font-family: 'Roboto Mono';
+    font-size: 13px;
+}
+
+#home-title {
+    font-family: 'Roboto Mono';
+    font-weight: 800;
+    font-size: 80px;
+    color: #00703c;
+    padding-top: 20px;
+}
+
+.dropdown-item {
+    font-size: 13px;
+}
+
+#home-body {
+    font-family: 'Roboto Mono';
+    padding: 20px;
+}
+
+.calendar {
+    width: auto;
+    height: 70px;
+    border-radius: 10px 10px;
+    background-color: #00703c;
+    color: white;
+}
+
+.calendar-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+
+.timelist {
+    width: auto;
+    height: 70px;
+    border-radius: 10px 10px;
+    background-color: #00703c;
+    color: white;
+    text-align: center;
+}
+
+.timelist-body {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px;
+    text-align: center;
+}
+
+.line {
+    width: auto;
+    height: 5px;
+    border-radius: 10px 10px;
+    background-color: #00703c;
+}
+
+.comments {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    color: #00703c;
+}
+
+#icon {
+    border-radius: 50%;
+    border: 2px dashed #00703c;
+    padding: 0px;
+    margin: 25px 0px 10px 0px;
+    width:180px;
+}
+
+.profile {
+    width: auto;
+    height: auto;
+    padding-bottom: 20%;
+    border-radius: 10px 10px;
+    background-color: white;
+    box-shadow: 0px 0px 15px #d4d4d4;
+}
+
+.profile-name {
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 15px;
+    color: #00703c;
+    text-align: center;
+}
+
+.profile-type {
+    font-size: 15px;
+    font-weight: 500;
+    color: #00703c;
+    text-align: center;
+}
+
+.reservations {
+    width: auto;
+    height: auto;
+    padding-bottom: 1px;
+    border-radius: 10px 10px;
+    background-color: white;
+    box-shadow: 0px 0px 15px #d4d4d4;
+    font-family: 'Roboto';
+}
+
+.reservations-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    color: #00703c;
+    text-align: justify;
+}
+
+.reservations-line {
+    width: auto;
+    height: 2px;
+    background-color: #00703c;
+}
+
+.reservations-body {
+    font-size: 15px;
+    font-weight: 500;
+    padding-top: 20px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.button-font {
+    font-family: 'Roboto Mono';
+}
+
+#request-caption, #submit, #edit {
+    font-family: 'Roboto Mono';
+}
+
+#profile-reservelist th {
+    color: #00703c;
+}
+
+#form-profile {
+    font-family: 'Roboto';
+}
+
+.edit-panel {
+    width: 700px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border-color: gray;
+    box-shadow: 0px 0px 7px gray;
+    margin: auto;
+    text-align: center;
+    /* padding: 20px; */
+    font-family: 'Roboto';
+}
+
+table #edit-button {
+    text-align: center;
+}
+
+.pointer {
+    cursor: pointer;
+}
