@@ -48,6 +48,14 @@ nav {
     text-align: center;
 }
 
+.calendar-highlight {
+    background-color : #00703c !important;
+    background-image : none !important;
+    color: White !important;
+    font-weight: bold !important;
+    font-size: 12pt;
+}
+
 .timelist {
     width: auto;
     height: 70px;
