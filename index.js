@@ -3,7 +3,6 @@ const express = require('express');
 const hbs = require('hbs'); 
 const router = require("./routes/router")
 
-
 // Create application
 const app = express();
 const port = 3000;
