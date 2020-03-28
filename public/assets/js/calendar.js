@@ -85,18 +85,26 @@ $(document).ready(function(){
         var row = document.createElement("tr");
 
         for (j = 0; j < 7; j++) {
+          var dayContainer;
+          var dayContainerText;
           if (i === 0 && j < firstDay().getDay()) {
-            var dayContainer = document.createElement("td");
-            var dayContainerText = document.createTextNode("");
+            dayContainer = document.createElement("td");
+            dayContainerText = document.createTextNode("");
             dayContainer.appendChild(dayContainerText);
             row.appendChild(dayContainer)
           } else if (dayincrement > daysInMonth()) {
             break;
           } else {
-            var dayContainer = document.createElement("td");
-            var dayContainerText = document.createTextNode(dayincrement);
+            dayContainer = document.createElement("td");
+            var date = new Date(year, mon, dayincrement);
+            dayContainerText = document.createTextNode(dayincrement);
+            console.log(dayContainer);
+            if((date < currentDate) || (date.getDay() == 0 || date.getDay() == 6)) {
+              dayContainer.style.fontWeight  = "300";
+              dayContainer.style.backgroundColor = "#B4B4B4";
+            }                 
             dayContainer.appendChild(dayContainerText);
-            row.appendChild(dayContainer)
+            row.appendChild(dayContainer);
             dayincrement++;
           }
         }
@@ -104,7 +112,6 @@ $(document).ready(function(){
         $("#cal-body").append(row);
       }
     }
-
     printDate(month[date.getMonth()], date.getFullYear());
     calendarLoop();
 
