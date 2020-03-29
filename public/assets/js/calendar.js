@@ -100,8 +100,8 @@ $(document).ready(function(){
             dayContainerText = document.createTextNode(dayincrement);
             console.log(dayContainer);
             if((date < currentDate) || (date.getDay() == 0 || date.getDay() == 6)) {
-              dayContainer.style.fontWeight  = "300";
-              dayContainer.style.backgroundColor = "#B4B4B4";
+              dayContainer.style.fontWeight  = "200";
+              dayContainer.style.fontColor = "#ffffff";
             }                 
             dayContainer.appendChild(dayContainerText);
             row.appendChild(dayContainer);
@@ -122,8 +122,6 @@ $(document).ready(function(){
       } else if (date.getDay() == 0 || date.getDay() == 6) {
         alert('You cannot choose Saturday nor Sunday!');
       } else {
-        $("td").css('color', 'black');
-        $("td").css('font-weight', 'normal');
         this.setAttribute("style", "font-weight: bolder; color: #00703c;");
         day = $(this).text();
       }
