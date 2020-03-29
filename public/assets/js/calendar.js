@@ -98,7 +98,6 @@ $(document).ready(function(){
             dayContainer = document.createElement("td");
             var date = new Date(year, mon, dayincrement);
             dayContainerText = document.createTextNode(dayincrement);
-            console.log(dayContainer);
             if((date < currentDate) || (date.getDay() == 0 || date.getDay() == 6)) {
               dayContainer.style.fontWeight  = "200";
               dayContainer.style.fontColor = "#ffffff";
@@ -115,6 +114,8 @@ $(document).ready(function(){
     printDate(month[date.getMonth()], date.getFullYear());
     calendarLoop();
 
+    var selected = null;
+
     $("table").delegate("td", "click", function(){
       date = new Date(year, mon, parseInt($(this).text()));
       if (date <= currentDate){
@@ -122,6 +123,10 @@ $(document).ready(function(){
       } else if (date.getDay() == 0 || date.getDay() == 6) {
         alert('You cannot choose Saturday nor Sunday!');
       } else {
+        if(selected !== null){
+          selected.setAttribute("style", "font-weight: 500; color: #00703c;")
+        }
+        selected = this;
         this.setAttribute("style", "font-weight: bolder; color: #00703c;");
         day = $(this).text();
       }
