@@ -100,7 +100,7 @@ $(document).ready(function(){
             dayContainerText = document.createTextNode(dayincrement);
             if((date < currentDate) || (date.getDay() == 0 || date.getDay() == 6)) {
               dayContainer.style.fontWeight  = "200";
-              dayContainer.style.fontColor = "#ffffff";
+              dayContainer.style.color = "#bdbdbd";
             }                 
             dayContainer.appendChild(dayContainerText);
             row.appendChild(dayContainer);
@@ -124,7 +124,7 @@ $(document).ready(function(){
         alert('You cannot choose Saturday nor Sunday!');
       } else {
         if(selected !== null){
-          selected.setAttribute("style", "font-weight: 500; color: #00703c;")
+          selected.setAttribute("style", "font-weight: 300; color: #212529;")
         }
         selected = this;
         this.setAttribute("style", "font-weight: bolder; color: #00703c;");
