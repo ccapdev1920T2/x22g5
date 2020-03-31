@@ -165,6 +165,10 @@ $(document).ready(function(){
       window.location.href = "reserve-success-admin";
     });
 
+    $("#submit-rider").click(function(){
+      window.location.href = "reserve-success";
+    });
+
     // Highlight date
 
   })

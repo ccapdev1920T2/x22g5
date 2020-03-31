@@ -37,7 +37,8 @@ router.get('/profile', function(req, res) {
     // var username = req.params.username;
     var firstname = 'Jeno';
     var lastname = 'Lee';
-    var priority = 'level 2 Students with Inter-Campus enrolled subjects or thesis';
+    var priority = '2';
+    var prioritydesc = 'Students with Inter-Campus enrolled subjects or thesis';
     var username = 'jenolee';
     var email = 'lee_jeno@dlsu.edu.ph';
     var icon_rider = '/assets/img/rider.png';
@@ -46,6 +47,7 @@ router.get('/profile', function(req, res) {
         firstname: firstname,
         lastname: lastname,
         priority: priority,
+        prioritydesc: prioritydesc,
         username: username,
         email: email,
         icon: icon_rider
