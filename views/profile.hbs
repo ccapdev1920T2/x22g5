@@ -68,6 +68,8 @@
               RIDER
               <br>
               LEVEL {{priority}}
+              <br>
+              {{prioritydesc}}
             </div>
             <button type="button" class="btn btn-outline-success edit-profile" id="edit">Edit Profile</button>
           </div>
@@ -151,7 +153,7 @@
               </div>
               <div class="form-group">
                 <label for="priority">Priority Level</label>
-                <input type="email" class="form-control" id="priority" placeholder="{{priority}}" readonly>
+                <input type="email" class="form-control" id="priority" placeholder="{{priority}} - {{prioritydesc}}" readonly>
                 <small id="emailHelp" class="form-text text-muted">Contact a system administrator for changes.</small>
               </div>
               <button type="submit" class="btn btn-outline-success" id="edit">Submit Change</button>
