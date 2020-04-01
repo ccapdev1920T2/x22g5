@@ -1,5 +1,5 @@
 # DLSU Arrows Express Line 1 Reservation [x22g5]
-This a web application that allows students and faculty members to make a reservation for the Arrows Express Line 1 shuttle service of DLSU.
+This is a web application that allows students and faculty members to make a reservation for the Arrows Express Line 1 shuttle service of DLSU.
 
 ## Features
 ### Universal
