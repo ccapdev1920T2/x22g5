@@ -124,7 +124,7 @@ $(document).ready(function(){
         alert('You cannot choose Saturday nor Sunday!');
       } else {
         if(selected !== null){
-          selected.setAttribute("style", "font-weight: 300; color: #212529;")
+          selected.setAttribute("style", "font-weight: 400; color: #212529;")
         }
         selected = this;
         this.setAttribute("style", "font-weight: bolder; color: #00703c;");
