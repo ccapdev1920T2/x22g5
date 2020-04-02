@@ -16,11 +16,11 @@ This is a web application that allows students and faculty members to make a res
 * Accept or reject pending reservations
 
 ## Setting up
-Requirements and steps in order to run the web application
 
 ### Prerequisites
 ``````
 Git
+MongoDB
 Node.js
 ``````
 
