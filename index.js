@@ -1,36 +1,46 @@
-// Imports
+
+// import module `express`
 const express = require('express');
-const hbs = require('hbs'); 
-const router = require("./routes/router")
 
-// Create application
+// import module `hbs`
+const hbs = require('hbs');
+
+// import module `routes` from `./routes/routes.js`
+const routes = require('./routes/routes.js');
+
+// import module `database` from `./model/db.js`
+const db = require('./models/db.js');
+
 const app = express();
-const port = 3000;
-app.set('view engine', 'hbs');
-app.use(express.static('views'));
-app.use(express.static('public'));
-app.use("/", router);
+const port = 9090;
 
+// set `hbs` as view engine
+app.set('view engine', 'hbs');
+
+// sets `/views/partials` as folder containing partial hbs files
 hbs.registerPartials(__dirname + '/views/partials');
 
-// Helpers
-hbs.registerHelper('cap', function(text) {
-    return text.toUpperCase(); 
+// parses incoming requests with urlencoded payloads
+app.use(express.urlencoded({extended: true}));
+
+// set the folder `public` as folder containing static assets
+// such as css, js, and image files
+app.use(express.static('public'));
+
+
+// define the paths contained in `./routes/routes.js`
+app.use('/', routes);
+
+// if the route is not defined in the server, render `../views/error.hbs`
+// always define this as the last middleware
+app.use(function (req, res) {
+    res.render('error');
 });
 
-hbs.registerHelper('italicize', function(text) {
-    var x = '<i>' + text.toUpperCase() + '</i>';
-    return new hbs.SafeString(x); 
-});
+// connects to the database
+db.connect();
 
-
-// Helpers
-hbs.registerHelper('cap', function(text) {
-    return text.toUpperCase(); 
-});
-
-
-// Listener
-app.listen(port, function() {
-    console.log('App listening to ' + port);
+// binds the server to a specific port
+app.listen(port, function () {
+    console.log('app listening at port ' + port);
 });

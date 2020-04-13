@@ -23,41 +23,48 @@
         </div>
         <div class="row signup-body p-5 m-3 text-justify">
             <div class="container">
-                <form action="login">
+            
+                <form action="signup" method="post">
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">First Name</label>
                         <div class="col">
-                            <input type="text" class="form-control" id="email">
+                            <input type="text" class="form-control" name= "firstName" id="firstName">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Last Name</label>
                         <div class="col">
-                            <input type="text" class="form-control" id="email">
+                            <input type="text" class="form-control" name="lastName"id="lastName">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col">
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" name ="email"id="email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Username</label>
+                        <div class="col">
+                            <input type="text" class="form-control" name ="userName"id="userName">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Password</label>
                         <div class="col">
-                            <input type="password" class="form-control" id="email">
+                            <input type="password" class="form-control" name="password" id="password">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Confirm Password</label>
                         <div class="col">
-                            <input type="password" class="form-control" id="email">
+                            <input type="password" class="form-control" name ="confirmPassword"id="confirmPassword">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Priority Level</label>
                         <div class="col">
-                            <select id="inputState" class="form-control">
+                            <select id="priorityLevel" name ="priorityLevel"class="form-control">
                                 <option value="">Choose...</option>
                                 <option value="1">1 - Faculty and ASF with Inter-campus assignments</option>
                                 <option value="2">2 - Students with Inter-Campus enrolled subjects or thesis</option>
@@ -69,7 +76,7 @@
                     </div>
                     <div class="form-group row align-items-center">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-success" href="login">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
             </form>
@@ -77,7 +84,7 @@
         </div>
         <div class="row p-5 m-3 text-center">
             <div class="container">
-                <a href="login" style="color: #00703c; font-family: 'Roboto Mono';">Go Back to Log-In</a>
+                <a href="/" style="color: #00703c; font-family: 'Roboto Mono';">Go Back to Log-In</a>
             </div>
         </div>
     </div>
