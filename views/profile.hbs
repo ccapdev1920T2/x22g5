@@ -13,16 +13,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <script>
-      $(document).ready(function(){
-        // FOR TOOLTIP 
-        $('[data-toggle="tooltip"]').tooltip();
-
-        $(".edit-profile").click(function(){
-          window.location.href = "#profile-panel"
-        });
-      })
-    </script>
   </head>
 <body>
     <!-- Header -->
@@ -31,13 +21,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="home">Home</a>
+            <a class="nav-link" href="/home?firstname={{firstname}}&userName={{username}}">Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="reserve">Reserve</a>
+              <a class="nav-link" href="/reserve?firstname={{firstname}}&userName={{username}}">Reserve</a>
             </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Profile<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/profile?firstname={{firstname}}&userName={{username}}">Profile<span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -48,7 +38,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">Settings</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="login">Logout</a>
+              <a class="dropdown-item" href="/">Logout</a>
             </div>
           </li>
         </ul>
@@ -62,7 +52,8 @@
           <div class="profile text-center">
             <img src="{{this.icon}}" class="mx-auto" id="icon">
             <div class="profile-name">
-              {{cap lastname}}, {{cap firstname}}
+              {{!-- {{cap lastname}}, {{cap firstname}} --}}
+              {{lastname}}, {{firstname}}
             </div>
             <div class="profile-type pb-4">
               RIDER
@@ -89,67 +80,43 @@
                 </tr>
               </thead>
               <tbody>
+                {{# each items}}
+                <article class="item">
                 <tr>
-                  <td>MNL > LGN</th>
-                  <td>3/2/20</td>
-                  <td>5:00PM</td>
-                  <td>PENDING</td>
+                  <td>{{this.location}}</th>
+                  <td>{{this.date}}</td>
+                  <td>{{this.time}}</td>
+                  <td>{{this.status}}</td>
                   <td class="pointer"><i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Cancel this reservation" style="color: black;"></i></td>
                 </tr>
-                <tr>
-                  <td>LGN > MNL</th>
-                  <td>3/2/20</td>
-                  <td>7:00AM</td>
-                  <td>APPROVED</td>
-                  <td class="pointer"><i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Cancel this reservation" style="color: black;"></i></td>
-                </tr>
-                <tr>
-                  <td>MNL > LGN</th>
-                  <td>2/28/20</td>
-                  <td>5:00PM</td>
-                  <td>DONE</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>LGN > MNL</th>
-                  <td>2/28/20</td>
-                  <td>9:00AM</td>
-                  <td>DONE</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>LGN > MNL</th>
-                  <td>2/27/20</td>
-                  <td>2:30PM</td>
-                  <td>CANCELLED</td>
-                  <td></td>
-                </tr>
+                </article>
+                {{/each}}
               </tbody>
             </table>
           </div>
           <div class="reservations mb-3 pb-4" id="profile-panel">
             <div class="reservations-title">YOUR PROFILE</div>
             <div class="reservations-line"></div>
-            <form class="m-auto p-3" id="form-profile">
+            <form class="m-auto p-3" id="form-profile" method="post">
               <div class="form-group">
                 <label for="user">Username</label>
-                <input type="text" class="form-control" id="user" placeholder="{{username}}">
+                <input type="text" class="form-control" id="user" name="username" placeholder="{{username}}">
               </div>
               <div class="form-group">
                 <label for="firstname">First Name</label>
-                <input type="text" class="form-control" id="firstname" placeholder="{{firstname}}">
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="{{firstname}}">
               </div>
               <div class="form-group">
                 <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" placeholder="{{lastname}}">
+                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="{{lastname}}">
               </div>
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="{{email}}">
+                <input type="email" class="form-control" id="email" name="email" placeholder="{{email}}">
               </div>
               <div class="form-group">
                 <label for="pass">Password</label>
-                <input type="password" class="form-control" id="pass">
+                <input type="password" class="form-control" id="pass" name="password" placeholder="{{password}}">
               </div>
               <div class="form-group">
                 <label for="priority">Priority Level</label>

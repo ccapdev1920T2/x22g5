@@ -1,25 +1,17 @@
 {
-  "name": "x22g5",
+  "name": "mco2-test3",
   "version": "1.0.0",
-  "description": "This a web application that allows students and faculty members to make a reservation for the Arrows Express Line 1 shuttle service of DLSU.",
+  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "mongoose": "^5.9.7"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ccapdev1920T2/x22g5.git"
-  },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ccapdev1920T2/x22g5/issues"
-  },
-  "homepage": "https://github.com/ccapdev1920T2/x22g5#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "hbs": "^4.1.0"
-  },
-  "devDependencies": {},
-  "keywords": []
+  "license": "ISC"
 }

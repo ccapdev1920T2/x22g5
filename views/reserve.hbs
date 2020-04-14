@@ -23,13 +23,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="home">Home</a>
+            <a class="nav-link" href="/home?firstname={{firstname}}&userName={{userName}}">Home</a>
           </li>
           <li class="nav-item active">
-              <a class="nav-link" href="#">Reserve<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/reserve?firstname={{firstname}}&userName={{userName}}">Reserve<span class="sr-only">(current)</span></a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="profile">Profile</a>
+            <a class="nav-link" href="/profile?firstname={{firstname}}&userName={{userName}}">Profile</a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -40,7 +40,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">Settings</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="login">Logout</a>
+              <a class="dropdown-item" href="/">Logout</a>
             </div>
           </li>
         </ul>
@@ -147,12 +147,13 @@
       </div>
     </div>
 
+    <form method="post">
     <div class="container p-4">
       <div class="row">
         <div class="col">
           <div class="comments">ANY COMMENTS?</div>
           <div class="form-group green-border-focus">
-              <textarea class="form-control rounded-5" rows="5"></textarea>
+              <textarea class="form-control rounded-5" rows="5" name="comment"></textarea>
           </div>
         </div>
       </div>
@@ -163,15 +164,15 @@
       <div class="row">
         <div class="col-4">
           <p style="color:#00703c; font-weight: bold">DATE</p>
-          <p id="summary-date"></p>
+          <p id="summary-date" name="date"></p>
         </div>
         <div class="col-4">
           <p style="color:#00703c; font-weight: bold">DESTINATION</p>
-          <p id="summary-destination"></p>
+          <p id="summary-destination" name="destination"></p>
         </div>
         <div class="col-4">
           <p style="color:#00703c; font-weight: bold">TIME</p>
-          <p id="summary-time"></p>
+          <p id="summary-time" name="time"></p>
         </div>
       </div>
     </div>
@@ -179,5 +180,7 @@
     <div class="container p-5 text-center">
       <button type="submit" class="btn btn-outline-success" id="submit-rider">Submit</button>
     </div>
+  </form>
+
 </body>
 </html>
