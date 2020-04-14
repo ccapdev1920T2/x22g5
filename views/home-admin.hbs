@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DLSU Arrows Express Line 1 Reservation - Home</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="assets/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark" style="background-color: #00703c;">
+      <!-- <a class="navbar-brand" href="#"><img src="assets/dlsu.png" width="180"></a> -->
+      <a class="navbar-brand" href="#"><img src="assets/img/weblogo-white.png" width="100"></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/admin?firstname={{firstname}}&userName={{userName}}">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&userName={{userName}}">Reserve</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&userName={{userName}}">Edit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&userName={{userName}}">Profile</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bars fa-lg" style="color: white;"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="login">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container p-5 m-auto text-center">
+      <img src="assets/img/hello-green.png" width="130">
+      <h1 id="home-title">Hey, {{firstname}}!</h1>
+    </div>
+
+    <div class="container pt-4 m-auto text-center">
+      <p id="request-caption">What would you like to do today?</p>
+    </div>
+
+    <div class="container p-5 m-auto text-center">
+      <div class="row pt-4">
+        <div class="col">
+          <a class="btn btn-outline-success button-font" href="/reserveAdmin?firstname={{firstname}}&userName={{userName}}">Reserve a Ride</a>
+        </div>
+        <div class="col">
+          <a class="btn btn-outline-success button-font" href="/editAdmin?firstname={{firstname}}&userName={{userName}}">Edit Reservations</a>
+        </div>
+        <div class="col">
+         <a class="btn btn-outline-success button-font" href="/profileAdmin?firstname={{firstname}}&userName={{userName}}">Check Profile</a>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

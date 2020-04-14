@@ -5,6 +5,7 @@ const db = require('../models/db.js');
 // import module `User` from `../models/UserModel.js`
 const User = require('../models/UserModel.js');
 
+var details = 0;
 /*
     defines an object which contains functions executed as callback
     when a client requests for `profile` paths in the server
@@ -16,9 +17,6 @@ const profileController = {
         as defined in `../routes/routes.js`
     */
     getProfile: function (req, res) {
-
-
-        // query where `idNum` is equal to URL parameter `idNum`
         
 
 
@@ -28,10 +26,11 @@ const profileController = {
             if (err) throw err;
             var dbo = db.db("arrows-express");
             var query = {userName: req.query.userName};
-            console.log("Username: ",req.query.userName);
+            console.log("Nasa get profile");
+            // console.log("Username: ",req.query.userName);
             dbo.collection("rider").find(query).toArray(function(err, result) {
             if (err) throw err;
-            console.log("Result found: ",result);
+          //  console.log("Result found: ",result);
 
             if(result[0].priorityLevel==1){
                 var desc = "Faculty and ASF with Inter-Campus assignments";
@@ -49,7 +48,7 @@ const profileController = {
                 var desc = "Employees and Students with Official Business";
             }
           
-            var details = {
+             details = {
                 firstname: result[0].firstName,
                 lastname: result[0].lastName,
                 email: result[0].email,
@@ -57,34 +56,44 @@ const profileController = {
                 password: result[0].password,
                 priority: result[0].priorityLevel,
                 prioritydesc: desc
-            };
-            
-        
+            };   
 
-            res.render('profile',details);
+           // res.render('profile',details);
             db.close();
 
-     });
-     
-     });
+     }); 
+   
 
 
+     });
+
+     //for table
      MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
         if (err) throw err;
+        var resultArray=[];
         var dbo = db.db("arrows-express");
         var query = {userName: req.query.userName};
-        console.log("Username: ",req.query.userName);
-        dbo.collection("rider").find(query).toArray(function(err, result) {
 
-            res.render('profile',{detail: result});
+        console.log("Nasa table ako");
+       var cursor = dbo.collection("registration").find(query);
+        cursor.forEach(function(doc,err){
+       resultArray.push(doc);
 
-        });
+         }, function(){
 
-    });
-
-    
+        console.log(details);
+        var info=[];
+        for(var i in details)
+            info.push([i,details[i]]);
+       res.render('profile',{items: resultArray, detail: info});
+       db.close();
+            }); 
+       });
+   
       
     },
+
+
 
     postProfile: function (req,res){
 
