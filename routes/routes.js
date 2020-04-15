@@ -19,6 +19,14 @@ const homeController = require('../controllers/homeController.js');
 
 const reserveController = require('../controllers/reserveController.js');
 
+const adminController = require('../controllers/adminController.js');
+
+const adminprofileController = require('../controllers/adminprofileController.js');
+
+const editController = require('../controllers/editController.js');
+
+const reserveadminController = require('../controllers/reserveadminController.js');
+
 const app = express();
 
 /*
@@ -74,6 +82,15 @@ app.get('/reserve', reserveController.getReserve);
 
 app.post('/reserve', reserveController.postReserve);
 
+app.get('/admin', adminController.getAdmin);
+
+app.get('/profileAdmin', adminprofileController.getProfile);
+
+app.post('/profileAdmin', adminprofileController.postProfile);
+
+app.get('/editAdmin', editController.getEdit);
+
+app.get('/reserveAdmin', reserveadminController.getadminReserve);
 
 /*
     exports the object `app` (defined above)
