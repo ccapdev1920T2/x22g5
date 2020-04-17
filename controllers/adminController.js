@@ -14,7 +14,7 @@ const adminController = {
 
         var details = {
             firstname: req.query.firstname,
-            userName: req.query.userName
+            username: req.query.username
 
         }
         res.render('home-admin',details);      

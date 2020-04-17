@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   
@@ -23,16 +24,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/admin?firstname={{firstname}}&userName={{username}}">Home</a>
+            <a class="nav-link" href="/admin?firstname={{firstname}}&username={{username}}">Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&userName={{username}}">Reserve</a>
+              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&username={{username}}">Reserve</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&userName={{username}}">Edit<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&username={{username}}">Edit<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&userName={{username}}">Profile</a>
+            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&username={{username}}">Profile</a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -58,21 +59,16 @@
       <div class="row">
         <div class="col">
           <div class="edit-panel">
-            <form class="pt-4 pl-3 pr-3 pb-2">
+            <form class="pt-4 pl-3 pr-3 pb-2" method="post">
               <div class="form-row">
                 <div class="col">
-                  <select class="form-control">
-                    <option value="" selected disabled>Sort reservations by</option>
-                    <option value="">Username</option>
-                    <option value="">Date</option>
-                    <option value="">Route</option>
-                  </select>
                 </div>
                 <div class="col">
+                
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search...">
+                    <input type="text" class="form-control" name= "usernamesearch" placeholder="Search...">
                     <div class="input-group-append" style="cursor: pointer;">
-                      <span class="input-group-text"><i class="fas fa-search"></i></span>
+                      <span class="input-group-text"><button type="submit" class="fas fa-search"></button></span>
                     </div>
                   </div>
                 </div>
@@ -94,62 +90,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>ssalamante</td>
-                        <td>LGN > MNL</td>
-                        <td>3/4/20</td>
-                        <td>11:00AM</td>
-                        <td>PENDING</td>
+                      {{# each infos}}
+                      <tr class="info">
+                        <td>{{this.username}}</td>
+                        <td><input type="text" value="{{this.location}}"  class="location"name="location" size="10"></td>
+                        <td><input type="text" value="{{this.date}}" class="date" name="date" size="10"></td>
+                        <td><input type="text" value="{{this.time}}" class="time" name="time" size="10"></td>
+                        <td><input type="text" value="{{this.status}}"  class="status" name="status" size="10"></td>
+                         <td class="id" style="display: none;">{{this._id}}</td>
                         <td class="pointer"><i class="far fa-edit"></i></td>
                       </tr>
-                      <tr>
-                        <td>abenz</td>
-                        <td>MNL > LGN</td>
-                        <td>3/4/20</td>
-                        <td>9:30AM</td>
-                        <td>PENDING</td>
-                        <td class="pointer"><i class="far fa-edit"></i></td>
-                      </tr>
-                      <tr>
-                        <td>pcarandang</td>
-                        <td>LGN > MNL</td>
-                        <td>3/3/20</td>
-                        <td>2:30PM</td>
-                        <td>PENDING</td>
-                        <td class="pointer"><i class="far fa-edit"></i></td>
-                      </tr>
-                      <tr>
-                        <td>jenolee</td>
-                        <td>MNL > LGN</td>
-                        <td>3/2/20</td>
-                        <td>5:00PM</td>
-                        <td>PENDING</td>
-                        <td class="pointer"><i class="far fa-edit"></i></td>
-                      </tr>
-                      <tr>
-                        <td>jacksonwang</td>
-                        <td>LGN > MNL</td>
-                        <td>3/2/20</td>
-                        <td>1:00PM</td>
-                        <td>PENDING</td>
-                        <td class="pointer"><i class="far fa-edit"></i></td>
-                      </tr>
-                      <tr>
-                        <td>jenolee</td>
-                        <td>LGN > MNL</td>
-                        <td>3/2/20</td>
-                        <td>7:00AM</td>
-                        <td>APPROVED</td>
-                        <td class="pointer"><i class="far fa-edit"></i></td>
-                      </tr>
-                      <tr>
-                        <td>gdragon</td>
-                        <td>LGN > MNL</td>
-                        <td>3/2/20</td>
-                        <td>7:00PM</td>
-                        <td>REJECTED</td>
-                        <td class="pointer"><i class="far fa-edit"></i></td>
-                      </tr>
+                      {{/each}}
                     </tbody>
                   </table>
                 </div>
@@ -158,5 +109,24 @@
         </div>
       </div>
     </div>
+
+    <script type ="text/javascript">
+     
+        $('tbody').on('click','i',function(){
+        var id= $(this).parent().parent().find('.id').text();
+        var status= $(this).parent().parent().find('.status').val();
+         var time= $(this).parent().parent().find('.time').val();
+         var date= $(this).parent().parent().find('.date').val();
+         var location= $(this).parent().parent().find('.location').val();
+          alert('You have successfully updated.');
+        $.get('/editReservations',{id: id, status: status, time:time, date:date,location:location}, function(flag){
+
+        
+     });
+     
+    });
+
+    </script>
+
 </body>
 </html>

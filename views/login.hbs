@@ -26,12 +26,12 @@
                     <h2 id="login-caption">Please enter your login credentials.</h2>
                     <div class="login-form">
                         <form action ="/login" method="post">
-                            <label class="sr-only" for="user">Username</label>
+                            <label class="sr-only" for="user">username</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fas fa-user-friends"></i></div>
                                 </div>
-                                <input type="text" class="form-control" name ="userName" id="userName">
+                                <input type="text" class="form-control" placeholder="Username" name ="username" id="username">
                             </div>
                             <br>
                             <label class="sr-only" for="pass">Password</label>
@@ -39,11 +39,11 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fas fa-lock"></i>&emsp13;</div>
                                 </div>
-                                <input type="password" class="form-control" name="password"id="password">
+                                <input type="password" placeholder="Password" class="form-control" name="password"id="password">
                             </div>
                             <br><br>
                             {{!-- <button type="submit" class="btn btn-success" id="loginbutton">Log In</button> --}}
-                            <input type = "submit"  class="btn btn-success" id="loginbutton" value="submit">
+                            <input type= "submit" class="btn btn-success" id="loginbutton" value="submit">
                         </form>
                         <br>
                         <div class="row mt-4 text-center">

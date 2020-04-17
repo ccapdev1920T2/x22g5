@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 // defines the schema for collection `users`
 var LoginSchema = new mongoose.Schema({
-    userName: {
+    username: {
         type: String,
         required: true
     },

@@ -5,7 +5,13 @@ const db = require('../models/db.js');
 // import module `User` from `../models/UserModel.js`
 const User = require('../models/UserModel.js');
 
-var details = 0;
+const mongodb = require('mongodb');
+
+
+
+
+
+
 /*
     defines an object which contains functions executed as callback
     when a client requests for `profile` paths in the server
@@ -17,20 +23,27 @@ const profileController = {
         as defined in `../routes/routes.js`
     */
     getProfile: function (req, res) {
+
         
+        
+        var details = [];
 
+        if(details.length > 0){
+           details = [];
+        }
 
+        var icon = "/assets/img/rider.png";
         var MongoClient = require('mongodb').MongoClient;
         var url = "mongodb://localhost:27017/";
             MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
             if (err) throw err;
             var dbo = db.db("arrows-express");
-            var query = {userName: req.query.userName};
-            console.log("Nasa get profile");
-            // console.log("Username: ",req.query.userName);
+            var query = {username: req.query.username};
+           
+            
             dbo.collection("rider").find(query).toArray(function(err, result) {
             if (err) throw err;
-          //  console.log("Result found: ",result);
+       
 
             if(result[0].priorityLevel==1){
                 var desc = "Faculty and ASF with Inter-Campus assignments";
@@ -48,18 +61,15 @@ const profileController = {
                 var desc = "Employees and Students with Official Business";
             }
           
-             details = {
-                firstname: result[0].firstName,
-                lastname: result[0].lastName,
-                email: result[0].email,
-                username: result[0].userName,
-                password: result[0].password,
-                priority: result[0].priorityLevel,
-                prioritydesc: desc
-            };   
 
-           // res.render('profile',details);
+            details.push(result[0].firstname,result[0].lastname,result[0].email,result[0].username,
+                result[0].password,result[0].priorityLevel,desc);
+
+                console.log("Details: ",details);
+    
             db.close();
+
+
 
      }); 
    
@@ -72,36 +82,57 @@ const profileController = {
         if (err) throw err;
         var resultArray=[];
         var dbo = db.db("arrows-express");
-        var query = {userName: req.query.userName};
+        var query = {username: req.query.username};
 
-        console.log("Nasa table ako");
-       var cursor = dbo.collection("registration").find(query);
+       
+       var cursor = dbo.collection("reserve").find(query);
         cursor.forEach(function(doc,err){
-       resultArray.push(doc);
+        resultArray.push(doc);
 
-         }, function(){
+         }, 
+        
+        function(){
+        res.render('profile',{items: resultArray, firstname: details[0], lastname: details[1],email: details[2],
+                            username: details[3], password: details[4],priority: details[5], prioritydesc: details[6], icon: icon});
+        db.close();
 
-        console.log(details);
-        var info=[];
-        for(var i in details)
-            info.push([i,details[i]]);
-       res.render('profile',{items: resultArray, detail: info});
-       db.close();
             }); 
-       });
+            
+        });
    
       
     },
 
 
+    deleteProfile: function(req,res){
+
+
+                var query = req.query.id;
+
+                var query = {_id:new mongodb.ObjectId(query)};
+
+                var MongoClient = require('mongodb').MongoClient;
+                var url = "mongodb://localhost:27017/";
+                
+                    MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
+                        var dbo = db.db("arrows-express");
+                        dbo.collection("reserve").deleteOne(query,function(err, result) {
+                         
+                            res.send(true);
+
+                        });
+
+                    });
+    },
+
 
     postProfile: function (req,res){
 
 
-        var username = req.query.userName;
-        var userName = req.body.username;
-        var firstName = req.body.firstname;
-        var lastName = req.body.lastname;
+        var username = req.query.username;
+        var username = req.body.username;
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
         var password = req.body.password;
         var email = req.body.email;
 
@@ -111,18 +142,21 @@ const profileController = {
         MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
         if (err) throw err;
         var dbo = db.db("arrows-express");
-        var query = { userName: username};
+        var query = { username: username};
 
-        var newvalues = { $set: {firstName: firstName, lastName: lastName, password: password, email: email, userName: userName} };
+        var newvalues = { $set: {firstname: firstname, lastname: lastname, password: password, email: email, username: username} };
         dbo.collection("rider").updateOne(query, newvalues, function(err, res) {
          if (err) throw err;
-            console.log("1 document updated");
+         
             db.close();
          });
         });
 
-        res.redirect('/profile?firstname='+firstName+'&userName='+userName);
+
+
+        res.redirect('/profile?firstname='+firstName+'&username='+username);
     }
+
 }
 
 /*

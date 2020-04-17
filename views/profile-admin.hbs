@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
    
@@ -23,16 +24,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/admin?firstname={{firstname}}&userName={{username}}">Home</a>
+            <a class="nav-link" href="/admin?firstname={{firstname}}&username={{username}}">Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&userName={{username}}">Reserve</a>
+              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&username={{username}}">Reserve</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&userName={{username}}">Edit<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&username={{username}}">Edit<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&userName={{username}}">Profile</a>
+            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&username={{username}}">Profile</a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -55,14 +56,14 @@
       <div class="row">
         <div class="col-4 position-sticky">
           <div class="profile text-center">
-            <img src="{{this.icon}}" class="mx-auto" id="icon">
+            <img src="{{icon}}" class="mx-auto" id="icon">
             <div class="profile-name">
               {{lastname}}, {{firstname}}
             </div>
             <div class="profile-type pb-4">
               ADMINISTRATOR
             </div>
-            <button type="button" class="btn btn-outline-success edit-profile" id="edit">Edit Profile</button>
+            <a href="#profile-panel"class="btn btn-outline-success edit-profile" id="edit">Edit Profile</a>
           </div>
         </div>
         <div class="col-8">
@@ -80,56 +81,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>ssalamante</td>
-                  <td>LGN > MNL</td>
-                  <td>3/4/20</td>
-                  <td>11:00AM</td>
+                {{# each infos}}
+                <tr class="info">
+                  <td>{{this.username}}</td>
+                  <td>{{this.location}}</td>
+                  <td>{{this.date}}</td>
+                  <td>{{this.time}}</td>
+                  <td class="id" style="display: none;">{{this._id}}</td>
                   <td class="pointer">
-                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
-                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
+                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" id="approve" data-placement="top" title="Approve this reservation" style="color: black;"></i>
+                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" id="reject" data-placement="top" title="Reject this reservation" style="color: black;"></i>
                   </td>
                 </tr>
-                <tr>
-                  <td>abenz</td>
-                  <td>MNL > LGN</td>
-                  <td>3/4/20</td>
-                  <td>9:30AM</td>
-                  <td class="pointer">
-                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
-                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td>pcarandang</td>
-                  <td>LGN > MNL</td>
-                  <td>3/3/20</td>
-                  <td>2:30PM</td>
-                  <td class="pointer">
-                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
-                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td>jenolee</td>
-                  <td>MNL > LGN</td>
-                  <td>3/2/20</td>
-                  <td>5:00PM</td>
-                  <td class="pointer">
-                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
-                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td>jacksonwang</td>
-                  <td>LGN > MNL</td>
-                  <td>3/2/20</td>
-                  <td>1:00PM</td>
-                  <td class="pointer">
-                    <i class="far fa-check-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Approve this reservation" style="color: black;"></i>
-                    <i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Reject this reservation" style="color: black;"></i>
-                  </td>
-                </tr>
+                {{/each}}
               </tbody>
             </table>
           </div>
@@ -139,7 +103,7 @@
             <div class="reservations-line"></div>
             <form class="m-auto p-3" id="form-profile" method="post">
               <div class="form-group">
-                <label for="user">Username</label>
+                <label for="user">username</label>
                 <input type="text" class="form-control" id="user" name="username" placeholder="{{username}}">
               </div>
               <div class="form-group">
@@ -164,5 +128,35 @@
         </div>
       </div>
     </div>
+        <script type ="text/javascript">
+     
+        $('tbody').on('click','#approve',function(){
+        var id= $(this).parent().parent().find('.id').text();
+        var $approve =  $(this);
+        $.get('/approveProfile',{id: id}, function(flag){
+       
+          if(flag){    
+           $approve.parent().parent().remove();
+          }
+     });
+     
+    });
+
+    $('tbody').on('click','#reject',function(){
+        var id= $(this).parent().parent().find('.id').text();
+        var $reject =  $(this);
+        $.get('/rejectProfile',{id: id}, function(flag){
+       
+          if(flag){    
+            $reject.parent().parent().remove();
+          }
+     });
+     
+    });
+
+
+
+    </script>
+
 </body>
 </html>

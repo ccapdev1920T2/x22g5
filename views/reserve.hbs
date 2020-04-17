@@ -23,13 +23,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/home?firstname={{firstname}}&userName={{username}}">Home</a>
+            <a class="nav-link" href="/home?firstname={{firstname}}&username={{username}}">Home</a>
           </li>
           <li class="nav-item active">
-              <a class="nav-link" href="/reserve?firstname={{firstname}}&userName={{username}}">Reserve<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/reserve?firstname={{firstname}}&username={{username}}">Reserve<span class="sr-only">(current)</span></a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profile?firstname={{firstname}}&userName={{username}}">Profile</a>
+            <a class="nav-link" href="/profile?firstname={{firstname}}&username={{username}}">Profile</a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -164,15 +164,18 @@
       <div class="row">
         <div class="col-4">
           <p style="color:#00703c; font-weight: bold">DATE</p>
-          <p id="summary-date" name="date"></p>
+          <p id="summary-date1"></p>
+          <textarea id="summary-date" name="date" style="display: none;"></textarea>
         </div>
         <div class="col-4">
           <p style="color:#00703c; font-weight: bold">DESTINATION</p>
-          <p id="summary-destination" name="destination"></p>
+           <p id="summary-destination1"></p>
+          <textarea id="summary-destination" name="destination" style="display: none;"></textarea>
         </div>
         <div class="col-4">
           <p style="color:#00703c; font-weight: bold">TIME</p>
-          <p id="summary-time" name="time"></p>
+          <p id="summary-time1"></p>
+          <textarea id="summary-time" name="time" style="display: none;"></textarea>
         </div>
       </div>
     </div>
