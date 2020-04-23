@@ -1,6 +1,7 @@
 
 
 const db = require('../models/db.js');
+const Reserve = require('../models/ReserveModel.js');
 
 const reserveController = {
 
@@ -39,23 +40,11 @@ const reserveController = {
                 status: "Pending"
             }
 
-            var MongoClient = require('mongodb').MongoClient;
-            var url = "mongodb://localhost:27017/";
-    
-                MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
-                    if (err) throw err;
-                    var dbo = db.db("arrows-express");
-                    dbo.collection("reserve").insertOne(details, function(err, res) {
-                    if (err) throw err;
-                    
-                    db.close();
-            
-                });
+            db.insertOne(Reserve, details, function(flag) {
+                    if(flag){
+                        console.log("1 document added");
+                    }
             });
-
-
-
-              
                 res.redirect('/home?firstname='+firstname+'&username='+username);
 
     }

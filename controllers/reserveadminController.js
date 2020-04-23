@@ -1,9 +1,8 @@
 
 // import module `database` from `../models/db.js`
 const db = require('../models/db.js');
+const Reserve = require('../models/ReserveModel.js');
 
-// import module `User` from `../models/UserModel.js`
-const User = require('../models/UserModel.js');
 
 /*
     defines an object which contains functions executed as callback
@@ -29,39 +28,50 @@ const reserveadminController = {
 
     postadminReserve: function(req,res){
 
+        console.log("PUMASOK ADMIN");
+
         var userName = req.query.username;
         var firstname = req.query.firstname;
-         var username = req.body.user;
+         var username = req.body.riderusername;
          var date = req.body.date;
          var time = req.body.time;
          var location = req.body.destination;
          var comment = req.body.comment;
+
+         console.log(username);
         
          var user = {
             username: username,
-            date: date,
-            time: time,
-            location: location, 
             comment: comment,
+            date: date,
+            location: location, 
+            time: time, 
             status: "Approved"
         }
 
-         var MongoClient = require('mongodb').MongoClient;
-         var url = "mongodb://localhost:27017/";
+        //  var MongoClient = require('mongodb').MongoClient;
+        //  var url = "mongodb://localhost:27017/";
  
-         MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
+        //  MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
 
-            if (err) throw err;
-            var dbo = db.db("arrows-express");
-            dbo.collection("reserve").insertOne(user, function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted");
-                db.close();
+        //     if (err) throw err;
+        //     var dbo = db.db("arrows-express");
+        //     dbo.collection("reserve").insertOne(user, function(err, res) {
+        //         if (err) throw err;
+        //         console.log("1 document inserted");
+        //         db.close();
         
-            });
+        //     });
 
-         });
+        //  });
 
+        db.insertOne(Reserve, user, function(flag) {
+            if(flag){
+                console.log("1 document added");
+            }
+
+        });
+        
          res.redirect('/admin?firstname='+firstname+'&username='+userName);
     }
 }

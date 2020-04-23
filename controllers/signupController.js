@@ -1,5 +1,6 @@
 
 const Rider = require('../models/UserModel.js');
+const db = require('../models/db.js');
 
 const signupController = {
 
@@ -11,17 +12,19 @@ const signupController = {
     postSignUp: function (req, res) {
 
         
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
         var username = req.body.username;
         var password = req.body.password;
         var email = req.body.email;
         var confirmPassword = req.body.confirmPassword;
         var priorityLevel = req.body.priorityLevel;
 
-        var user = {
-            firstName: firstName,
-            lastName: lastName,
+        
+
+        var rider = {
+            firstname: firstname,
+            lastname: lastname,
             password: password,
             email: email,
             username: username,
@@ -29,23 +32,21 @@ const signupController = {
             priorityLevel: priorityLevel
         }
 
-        
 
-        var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://localhost:27017/";
+        db.insertOne(Rider, rider, function(flag) {
 
-            MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
-                if (err) throw err;
-                 var dbo = db.db("arrows-express");
-                dbo.collection("rider").insertOne(user, function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted");
-                db.close();
-        
-            });
+               if(flag){
+                console.log("1 document added");
+                res.redirect('/');
+               }
+               else{
+                   console.log("Error in input");
+                   res.redirect('/signup');
+
+               }
+             
         });
-
-        res.redirect('/');
+    
         
     }
 }

@@ -3,35 +3,32 @@
 var mongoose = require('mongoose');
 
 // defines the schema for collection `users`
-var UserSchema = new mongoose.Schema({
-    firstname: {
-        type: String,
-        required: true
-    },
-    lastname: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
+var ReserveSchema = new mongoose.Schema({
     username: {
-        type:String,
-        required:true
-    },
-    confirmPassword: {
         type: String,
         required: true
     },
-    priorityLevel: {
+    comment: {
+        type: String,
+        required: false
+    },
+    date: {
+        type: String,
+        required: true
+    },
+    location: {
+        type: String,
+        required: true
+    },
+    time: {
+        type: String,
+        required: true
+    },
+    status: {
         type: String,
         required: true
     }
+   
 });
 
 /*
@@ -40,4 +37,4 @@ var UserSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `users` -> plural of the argument `User`
 */
-module.exports = mongoose.model('Rider', UserSchema);
+module.exports = mongoose.model('Reserve', ReserveSchema);

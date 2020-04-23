@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 // import module `User` from `../models/UserModel.js`
 const Rider = require('./UserModel.js');
+const Admin = require('./AdminModel.js');
+const Reserve = require('./ReserveModel.js');
 
 // ccapdev-mongoose is the name of the database
 const url = 'mongodb://localhost:27017/arrows-express';
@@ -80,7 +82,7 @@ const database = {
         on a single document based on the model `model`
         filtered by the object `filter`
     */
-    updateOne: function(model, filter, update) {
+    updateOne: function(model, filter, update,callback) {
         model.updateOne(filter, update, function(error, result) {
             if(error) return callback(false);
             console.log('Document modified: ' + result.nModified);
@@ -93,7 +95,7 @@ const database = {
         on multiple documents based on the model `model`
         filtered using the object `filter`
     */
-    updateMany: function(model, filter, update) {
+    updateMany: function(model, filter, update,callback) {
         model.updateMany(filter, update, function(error, result) {
             if(error) return callback(false);
             console.log('Documents modified: ' + result.nModified);
@@ -105,7 +107,7 @@ const database = {
         deletes a single document based on the model `model`
         filtered using the object `conditions`
     */
-    deleteOne: function(model, conditions) {
+    deleteOne: function(model, conditions,callback) {
         model.deleteOne(conditions, function (error, result) {
             if(error) return callback(false);
             console.log('Document deleted: ' + result.deletedCount);
@@ -117,7 +119,7 @@ const database = {
         deletes multiple documents based on the model `model`
         filtered using the object `conditions`
     */
-    deleteMany: function(model, conditions) {
+    deleteMany: function(model, conditions,callback) {
         model.deleteMany(conditions, function (error, result) {
             if(error) return callback(false);
             console.log('Document deleted: ' + result.deletedCount);

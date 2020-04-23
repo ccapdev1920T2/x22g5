@@ -3,7 +3,6 @@
     defines an object which contains functions executed as callback
     when a client requests for `index` paths in the server
 */
-const Login = require('../models/LoginModel.js');
 
 
 const adminController = {
