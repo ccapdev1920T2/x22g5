@@ -1,12 +1,11 @@
 
-/*
-    defines an object which contains functions executed as callback
-    when a client requests for `index` paths in the server
-*/
-
-
 const adminController = {
 
+    /*
+        loads the home page of admin, gets the values of
+        firstname and username from the url and renders the 
+        data in home-admin.hbs
+    */
     
     getAdmin: function (req, res) {
 
@@ -21,8 +20,5 @@ const adminController = {
 
 }
 
-/*
-    exports the object `controller` (defined above)
-    when another script exports from this file
-*/
+
 module.exports = adminController;

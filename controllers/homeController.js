@@ -1,13 +1,12 @@
 
-
-const db = require('../models/db.js');
-
-const User = require('../models/UserModel.js');
-
-
 const homeController = {
 
-   
+    /*
+        home page for the user
+        renders home.hbs by getting
+        the user's firstname and username
+        from the url
+    */
     getHome: function (req, res) {
 
 

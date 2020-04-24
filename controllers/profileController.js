@@ -1,17 +1,20 @@
 
-// import module `database` from `../models/db.js`
+// import db
 const db = require('../models/db.js');
 
-// import module `User` from `../models/UserModel.js`
+// import Rider and Reserve Schema
 const Rider = require('../models/UserModel.js');
 const Reserve = require('../models/ReserveModel.js');
 
-
+//import mongodb
 const mongodb = require('mongodb');
 
 
 const profileController = {
 
+    /*
+        renders profile of user 
+    */
 
     getProfile: function (req, res) {
 
@@ -24,7 +27,16 @@ const profileController = {
            details = [];
         }
 
+        /*
+            finds the username of the user in 
+            the collection riders and pushes
+            all details to details array
+        */
+
         db.findOne(Rider, query, '', function(result) {
+
+            //descriptions for priority
+
             if(result.priorityLevel == 1){
                 var desc = "Faculty and ASF with Inter-Campus assignments";
             }
@@ -41,15 +53,18 @@ const profileController = {
                 var desc = "Employees and Students with Official Business";
             }
 
-        
-
             details.push(result.firstname,result.lastname,result.password,result.email,result.username,
                 result.priorityLevel,desc);
            
               
         });
 
-        //FOR TABLE
+        /*
+            displays all reservations of the user
+            by getting all the data from the 
+            collection reserves
+        */
+
         var MongoClient = require('mongodb').MongoClient;
         var url = "mongodb://localhost:27017/";
         MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
@@ -59,12 +74,14 @@ const profileController = {
         var query = {username: req.query.username};
 
        
-       var cursor = dbo.collection("reserves").find(query);
+        var cursor = dbo.collection("reserves").find(query);
         cursor.forEach(function(doc,err){
         resultArray.push(doc);
 
          }, 
-        
+        /*
+            renders all data to profile.hbs
+        */
         function(){
         console.log("Details: ", details);
         res.render('profile',{items: resultArray, firstname: details[0], lastname: details[1],password: details[2],
@@ -76,6 +93,11 @@ const profileController = {
 
 
     },
+
+    /*
+        deletes a reservation by getting
+        the id of a specific reservation
+    */
 
       deleteProfile: function(req,res){
 
@@ -92,7 +114,13 @@ const profileController = {
                 
                 
     },
+    /*
+        if a user wants to update his/her profile
+        also updates the username from the collection
+        reserves by corresponding it to the new username
 
+        Note: all input fields must be populated
+    */
     postProfile: function (req,res){
 
         var query = {username: req.query.username};
@@ -114,8 +142,6 @@ const profileController = {
         });
 
         res.redirect('/profile?firstname='+firstname+'&username='+username);
-
-
 
     }
 

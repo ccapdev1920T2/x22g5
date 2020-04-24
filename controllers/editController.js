@@ -1,5 +1,7 @@
 
-
+/*
+import schemas and db
+*/
 const Reserve = require('../models/ReserveModel.js');
 const mongodb = require('mongodb');
 const db = require('../models/db.js');
@@ -11,16 +13,26 @@ const editController = {
     
     getEdit: function (req, res) {
 
-       
+       /*
+            empties the value of details to avoid
+            data redundancy whenever a data is pushed
+       */
 
-        if(details > 0){
+        if(details!=null){
             details = [];
         }
 
+       
         details.push(req.query.firstname);
         details.push(req.query.username);
 
+        console.log(details);
 
+        /*
+            it gets all info from each data in
+            the reserves collection and pushes
+            everything to resultArray
+        */
         var MongoClient = require('mongodb').MongoClient;
         var url = "mongodb://localhost:27017/";
         MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
@@ -33,7 +45,9 @@ const editController = {
             cursor.forEach(function(doc,err){
             resultArray.push(doc);
              }, 
-            
+            /*
+                renders all details in edit-admin.hbs
+            */
             function(){
             res.render('edit-admin',{infos: resultArray,adminfirstname: details[0], adminusername: details[1],firstname: details[0], username: details[1]});   
             db.close();
@@ -43,6 +57,11 @@ const editController = {
             });
            
     },
+
+    /*
+        it updates all info from collection reserves
+        of a specific user
+    */
 
     editReserve: function (req,res){
 
@@ -55,7 +74,6 @@ const editController = {
 
         var query = {_id:new mongodb.ObjectId(query)};
         var newvalues = { $set: {status: status, time:time, location:location,date:date} };
-
        
         db.updateOne(Reserve,query,newvalues,function(result){
             
@@ -67,7 +85,14 @@ const editController = {
     postEdit:  function (req, res){
 
         var username = req.body.usernamesearch;
-       
+    
+        /*
+            if the button of search bar for username is clicked
+            and the input for the username is empty, it displays 
+            all data from the collection reserves. The purpose of 
+            this is to bring back all values if the admin wants to 
+            show all data after searching for a specific user
+        */
 
         if(username == ""){
 
@@ -95,6 +120,12 @@ const editController = {
                     
                 });
         }
+
+        /*
+            if the admin searches for the reservation of a 
+            specific user, it display all of the user's 
+            reservations
+        */
 
         else{
 

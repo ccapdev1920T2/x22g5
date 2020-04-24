@@ -1,11 +1,12 @@
-
-
+//import db and Reserve Schema
 const db = require('../models/db.js');
 const Reserve = require('../models/ReserveModel.js');
 
 const reserveController = {
 
-  
+    /*
+        renders the reserve page for user
+    */
     getReserve: function (req, res) {
 
         
@@ -18,7 +19,11 @@ const reserveController = {
        
       
     },
-
+    /*
+        adds the user's reservation in the
+        collection reserves, status is set
+        to "Pending"
+    */
     postReserve: function (req,res){
 
      
@@ -40,7 +45,7 @@ const reserveController = {
                 status: "Pending"
             }
 
-            db.insertOne(Reserve, details, function(flag) {
+             db.insertOne(Reserve, details, function(flag) {
                     if(flag){
                         console.log("1 document added");
                     }

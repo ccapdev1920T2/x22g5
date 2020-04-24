@@ -1,29 +1,44 @@
-
+//import db and Rider Schema
 const Rider = require('../models/UserModel.js');
+const db = require('../models/db.js');
 
 const signupController = {
 
+    /*
+        renders sign up page
+    */
    
     getSignUp: function (req, res) {
+        /*
+            if error, reload the page with error
+        */
         if(req.query.err){
-            res.render('signup',{err: "passwords doesn't match"});
+            var error = req.query.err;
+            res.render('signup',{err: error});
         }
         else{
             res.render('signup');
         }
     },
 
+    /*
+        if user submits a registration, data will be
+        added to the collection riders
+    */
     postSignUp: function (req, res) {
 
         
-        var firstname = req.body.firstName;
-        var lastname = req.body.lastName;
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
         var username = req.body.username;
         var password = req.body.password;
         var email = req.body.email;
         var confirmPassword = req.body.confirmPassword;
         var priorityLevel = req.body.priorityLevel;
-
+        
+        var query = {username: username};
+        
+        //if password and confirm password matches
         if(password === confirmPassword){
             var user = {
                 firstname: firstname,
@@ -34,28 +49,44 @@ const signupController = {
                 confirmPassword: confirmPassword,
                 priorityLevel: priorityLevel
             }
-    
-            
-    
-            var MongoClient = require('mongodb').MongoClient;
-            var url = "mongodb://localhost:27017/";
-    
-                MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
-                    if (err) throw err;
-                     var dbo = db.db("arrows-express");
-                    dbo.collection("rider").insertOne(user, function(err, res) {
-                    if (err) throw err;
-                    console.log("1 document inserted");
-                    db.close();
-            
-                });
+            //checks if username already exists 
+            db.findOne(Rider, query, '', function(result) {
+                    //if user exists, display error
+                if(result!=null){
+                    console.log("User already exists");
+                    res.redirect("/signup?err=UserExists");
+                }
+
+                /*
+                    if username is unique, inserts data
+                    in the collection riders
+                */
+                else{
+
+                db.insertOne(Rider, user, function(flag) {
+
+                    if(flag){
+                     console.log("1 document added");
+                     res.redirect('/');
+                    }
+                    else{
+                        console.log("Error in input");
+                        res.redirect('/signup');
+                    }
+                 });
+                }
             });
-    
-            res.redirect('/');
         }
+
+        /*
+        Error validation
+        Possible errors:
+        User exists
+        Password does not match
+        */
         else{
             console.log("passwords doesnt match");
-            res.redirect("/signup?err=nomatch");
+            res.redirect("/signup?err=Error:Password");
         }
         
     }
