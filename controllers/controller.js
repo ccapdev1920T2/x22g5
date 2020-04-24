@@ -32,7 +32,6 @@ const controller = {
 
                 }
                 else{
-                        
                         db.findOne(Rider, query, '', function(result) {
                         if(result == null){
                             res.redirect('/');
@@ -40,7 +39,20 @@ const controller = {
                         var firstname = result.firstname;
                         var username = result.username;
                         res.redirect('/home?firstname='+firstname+'&username='+username);
-                        });           
+                        });
+                        
+                        // Try!
+                        // db.findOne(Rider, query, '', function(err, result){
+                        //     if(err){
+                        //         res.redirect('/', {error: 'Wrong username or password!'});
+                        //     } if(result == null) {
+                        //         res.redirect('/', {error: 'Wrong username or password!'});
+                        //     } else {
+                        //         var firstname = result.firstname;
+                        //         var username = result.username;
+                        //         res.redirect('/home?firstname='+firstname+'&username='+username);
+                        //     }
+                        // });
                 }
                 
             });

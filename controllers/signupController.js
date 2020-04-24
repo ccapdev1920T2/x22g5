@@ -16,8 +16,8 @@ const signupController = {
     postSignUp: function (req, res) {
 
         
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
+        var firstname = req.body.firstName;
+        var lastname = req.body.lastName;
         var username = req.body.username;
         var password = req.body.password;
         var email = req.body.email;
@@ -26,8 +26,8 @@ const signupController = {
 
         if(password === confirmPassword){
             var user = {
-                firstName: firstName,
-                lastName: lastName,
+                firstname: firstname,
+                lastname: lastname,
                 password: password,
                 email: email,
                 username: username,
