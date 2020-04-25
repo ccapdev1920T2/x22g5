@@ -56,7 +56,6 @@ const controller = {
                         
                             if(result == null){
 
-                                console.log("pumasok sa null");
                            
                                 res.redirect("/?err=nouser");
                             }
