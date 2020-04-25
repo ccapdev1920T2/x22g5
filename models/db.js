@@ -162,4 +162,3 @@ const database = {
     when another script exports from this file
 */
 module.exports = database;
- 
