@@ -41,6 +41,12 @@ app.use(function (req, res) {
 db.connect();
 
 // binds the server to a specific port
-app.listen(port, function () {
+//Local server
+/*app.listen(port, function () {
     console.log('app listening at port ' + port);
-});
+}); */ 
+
+//For Heroku porting
+app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
