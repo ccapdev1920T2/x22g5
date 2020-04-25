@@ -38,7 +38,7 @@ const adminprofileController = {
         */
             db.findOne(Admin, query, '', function(result) {
                 details.push(result.firstname,result.lastname,
-                            result.email,result.username);
+                            result.email,result.username,result.password);
             });
 
 
@@ -73,7 +73,7 @@ const adminprofileController = {
             function(){
             res.render('profile-admin',{infos: resultArray, firstname: details[0], 
                                         lastname: details[1],email: details[2],
-                                        username: details[3],icon: icon});
+                                        username: details[3], password: details[4],icon: icon});
             db.close();
 
                 }); 
@@ -136,6 +136,7 @@ const adminprofileController = {
             var lastname = req.body.lastname;
             var password = req.body.password;
             var email = req.body.email;
+            
 
             var newvalues = { $set: {firstname: firstname, lastname: lastname, password: password, email: email, username: username} };
 

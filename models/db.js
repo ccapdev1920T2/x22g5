@@ -2,6 +2,15 @@
 // import module `mongoose`
 const mongoose = require('mongoose');
 
+const mongodb = require('mongodb');
+
+// MongoDB client
+const client = mongodb.MongoClient;
+//const url = 'mongodb://localhost:27017';
+
+// name of the database
+const dbName = 'arrows-express';
+
 // import module `User` from `../models/UserModel.js`
 const Rider = require('./UserModel.js');
 const Admin = require('./AdminModel.js');
@@ -29,6 +38,25 @@ const database = {
         });
     },
 
+    createDatabase: function() {
+        client.connect(url, options, function (err, db) {
+            if(err) throw err;
+            console.log('Database created!');
+            db.close();
+        });
+    },
+
+    insertOne1: function(collection, doc) {
+        client.connect(url, options, function (err, db) {
+            if(err) throw err;
+            var database = db.db(dbName);
+            database.collection(collection).insertOne(doc, function (err, res) {
+                if(err) throw err;
+                console.log('1 document inserted');
+                db.close();
+            });
+        });
+    },
     /*
         inserts a single `doc` to the database based on the model `model`
     */
