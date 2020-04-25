@@ -25,9 +25,15 @@ const controller = {
 
         // else{
         //     console.log("Else pumasok");
-            res.render('login');
+        //    res.render('login');
         //}
-        
+        if(req.query.err){
+            var error = req.query.err;
+            res.render('login',{err: "User not found"});
+        }
+        else{
+            res.render('login');
+        }
           
     },
 
@@ -61,18 +67,18 @@ const controller = {
 
                             //if null, reload the page
                             //ate aileen help me HAHAHA dito yung if user does not exist
-                        if(result == null){
+                            if(result == null){
 
-                            console.log("pumasok sa null");
-                            errcheck++; // triny ko lang magincrement para pag nag get tas more than 1
-                                        //yung errcheck baka pwede ko irender yung error message pero ayaw :(
-                            res.redirect("/login");
-                           
-                        }
-                        //else, direct to the home page of rider
-                        var firstname = result.firstname;
-                        var username = result.username;
-                        res.redirect('/home?firstname='+firstname+'&username='+username);
+                                console.log("pumasok sa null");
+                                errcheck++; // triny ko lang magincrement para pag nag get tas more than 1
+                                            //yung errcheck baka pwede ko irender yung error message pero ayaw :(
+                                res.redirect("/?err=nouser");
+                            }
+                            else{
+                                var firstname = result.firstname;
+                                var username = result.username;
+                                res.redirect('/home?firstname='+firstname+'&username='+username);
+                            }
                         });
                         
                         // Try!
