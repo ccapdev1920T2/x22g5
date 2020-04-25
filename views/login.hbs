@@ -25,9 +25,7 @@
                 </div>
                 <div class="login-panel">
                     <h2 id="login-caption">Please enter your login credentials.</h2>
-                      <center><b style="color:red;">{{err}}</b></center>
                     <div class="login-form">
-                      
                         <form action ="/login" method="post">
                             <label class="sr-only" for="user">Username</label>
                             <div class="input-group">
@@ -50,6 +48,7 @@
                         <br>
                         <div class="row mt-4 text-center">
                             <div class="col">
+                                {{err}}
                                 <a href="/signup" style="color: #00703c;">Sign Up!</a>
                             </div>
                         </div>

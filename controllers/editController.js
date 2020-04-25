@@ -26,6 +26,7 @@ const editController = {
         details.push(req.query.firstname);
         details.push(req.query.username);
 
+      
 
         /*
             it gets all info from each data in

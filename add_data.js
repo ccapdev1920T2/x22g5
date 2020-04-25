@@ -10,11 +10,11 @@ db.createDatabase();
 
 //details of admin
 var user = {
-    username: 'paulinegraida',
+    username: 'arren_antioquia',
     password: 'hatdog',
-    firstname: 'Paupau',
-    email: 'paulinegraida@gmail.com',
-    lastname: 'Graida'
+    firstname: 'Dr.Arren',
+    email: 'arren@dlsu.edu.ph',
+    lastname: 'Antioquia'
     
 };
 
