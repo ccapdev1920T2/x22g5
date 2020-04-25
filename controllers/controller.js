@@ -4,8 +4,7 @@ const Rider = require('../models/UserModel.js');
 const Admin = require('../models/AdminModel.js');
 //import db.js
 const db = require('../models/db.js');
-var err = false;
-var errcheck = 0;
+
 const controller = {
 
     getFavicon: function (req, res) {
@@ -15,20 +14,8 @@ const controller = {
     //renders the login page
     getIndex: function (req, res) {
 
-        // console.log("errcheck: ",errcheck);
-    
-        // if(errcheck>0){
-
-        //     console.log("pumasok sa err = true");
-        //     res.render('login',{err: "User does not exist"});
-        // }
-
-        // else{
-        //     console.log("Else pumasok");
-        //    res.render('login');
-        //}
         if(req.query.err){
-            var error = req.query.err;
+     
             res.render('login',{err: "User not found"});
         }
         else{
@@ -66,12 +53,11 @@ const controller = {
                         db.findOne(Rider, query, '', function(result) {
 
                             //if null, reload the page
-                            //ate aileen help me HAHAHA dito yung if user does not exist
+                        
                             if(result == null){
 
                                 console.log("pumasok sa null");
-                                errcheck++; // triny ko lang magincrement para pag nag get tas more than 1
-                                            //yung errcheck baka pwede ko irender yung error message pero ayaw :(
+                           
                                 res.redirect("/?err=nouser");
                             }
                             else{
@@ -80,19 +66,7 @@ const controller = {
                                 res.redirect('/home?firstname='+firstname+'&username='+username);
                             }
                         });
-                        
-                        // Try!
-                        // db.findOne(Rider, query, '', function(err, result){
-                        //     if(err){
-                        //         res.redirect('/', {error: 'Wrong username or password!'});
-                        //     } if(result == null) {
-                        //         res.redirect('/', {error: 'Wrong username or password!'});
-                        //     } else {
-                        //         var firstname = result.firstname;
-                        //         var username = result.username;
-                        //         res.redirect('/home?firstname='+firstname+'&username='+username);
-                        //     }
-                        // });
+                
                 }
                 
             });
