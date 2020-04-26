@@ -33,7 +33,8 @@ const editController = {
             everything to resultArray
         */
         var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://localhost:27017/";
+        //var url = "mongodb://localhost:27017/";
+        var url = "mongodb+srv://arrows_express:password123!@cluster0-i9vbi.mongodb.net/test?retryWrites=true&w=majority";
         MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
             if (err) throw err;
             var resultArray=[];
@@ -97,7 +98,8 @@ const editController = {
 
    
             var MongoClient = require('mongodb').MongoClient;
-            var url = "mongodb://localhost:27017/";
+            //var url = "mongodb://localhost:27017/";
+            var url = "mongodb+srv://arrows_express:password123!@cluster0-i9vbi.mongodb.net/test?retryWrites=true&w=majority";
             MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
                 if (err) throw err;
                 var resultArray=[];
@@ -129,7 +131,8 @@ const editController = {
         else{
 
             var MongoClient = require('mongodb').MongoClient;
-            var url = "mongodb://localhost:27017/";
+            //var url = "mongodb://localhost:27017/";
+            var url = "mongodb+srv://arrows_express:password123!@cluster0-i9vbi.mongodb.net/test?retryWrites=true&w=majority";
             MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
                 if (err) throw err;
                 var resultArray=[];
