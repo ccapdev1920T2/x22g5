@@ -64,7 +64,7 @@ const signupController = {
                                 password: hash,
                                 email: email,
                                 username: username,
-                                //confirmPassword: confirmPassword,
+                                confirmPassword: hash,
                                 priorityLevel: priorityLevel
                             }
         
