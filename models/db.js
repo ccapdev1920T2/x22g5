@@ -17,8 +17,7 @@ const Admin = require('./AdminModel.js');
 const Reserve = require('./ReserveModel.js');
 
 // ccapdev-mongoose is the name of the database
-//const url = 'mongodb://localhost:27017/arrows-express'; -> Local DB
-const url = "mongodb+srv://arrows_express:password123!@cluster0-i9vbi.mongodb.net/arrows-express?retryWrites=true&w=majority"; //Atlas DB
+const url = 'mongodb://localhost:27017/arrows-express';
 
 // additional connection options
 const options = {
@@ -35,7 +34,7 @@ const database = {
     connect: function () {
         mongoose.connect(url, options, function(error) {
             if(error) throw error;
-            console.log('Connezcted to: ' + url);
+            console.log('Connected to: ' + url);
         });
     },
 
