@@ -2,6 +2,9 @@
 const Rider = require('../models/UserModel.js');
 const db = require('../models/db.js');
 
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 const signupController = {
 
     /*
@@ -39,16 +42,7 @@ const signupController = {
         var query = {username: username};
         
         //if password and confirm password matches
-        if(password === confirmPassword){
-            var user = {
-                firstname: firstname,
-                lastname: lastname,
-                password: password,
-                email: email,
-                username: username,
-                confirmPassword: confirmPassword,
-                priorityLevel: priorityLevel
-            }
+        if(password === confirmPassword){            
             //checks if username already exists 
             db.findOne(Rider, query, '', function(result) {
                     //if user exists, display error
@@ -62,18 +56,34 @@ const signupController = {
                     in the collection riders
                 */
                 else{
-
-                db.insertOne(Rider, user, function(flag) {
-
-                    if(flag){
-                     console.log("1 document added");
-                     res.redirect('/');
-                    }
-                    else{
-                        console.log("Error in input");
-                        res.redirect('/signup');
-                    }
-                 });
+                    bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+                        if(!err){
+                            var user = {
+                                firstname: firstname,
+                                lastname: lastname,
+                                password: hash,
+                                email: email,
+                                username: username,
+                                confirmPassword: hash,
+                                priorityLevel: priorityLevel
+                            }
+        
+                            db.insertOne(Rider, user, function(flag) {
+        
+                                if(flag){
+                                console.log("1 document added");
+                                res.redirect('/');
+                                }
+                                else{
+                                    console.log("Error in input");
+                                    res.redirect('/signup');
+                                }
+                            });
+                        }
+                        else{
+                            console.log('hash went wrong');
+                        }
+                    });
                 }
             });
         }
