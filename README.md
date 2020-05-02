@@ -11,9 +11,12 @@ This is a web application that allows students and faculty members to make a res
 * View and edit profile information
 ### Rider
 * Priority system
+* Note: Must signup first to populate the database
 ### Administrator
 * Edit reservations
 * Accept or reject pending reservations
+* Note: If an Administrator wants to edit a rider's status,
+        the admin must only enter "Approved, Rejected, or Pending" specifically
 
 ## Setting up
 
@@ -39,12 +42,24 @@ git clone https://github.com/ccapdev1920T2/x22g5.git
 npm install
 ``````
 
-4. Run server
+4. Run add_data.js (creates database and admin user)
+``````
+node add_data.js
+
+The following will be added to the database: 
+username: arren_antioquia
+password: hatdog
+firstname: Dr.Arren
+email: arren_antioquia@dlsu.edu.ph
+lastname: Antioquia
+``````
+
+5. Run index.js
 ``````
 node index.js
 ``````
 
-5. Open browser and access application
+6. Open browser and access application
 ``````
 localhost:3000
 ``````
@@ -64,4 +79,4 @@ localhost:3000
 
 ## Acknowledgement
 
-Sir. Arren legend!
+A legendary Doctor once said "bibigyan ko ng 4.0 yung group 5" 

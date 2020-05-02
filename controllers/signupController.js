@@ -1,73 +1,103 @@
-
-// import module `database` from `../models/db.js`
-//const db = require('../models/db.js');
-
-// import module `User` from `../models/UserModel.js`
+//import db and Rider Schema
 const Rider = require('../models/UserModel.js');
+const db = require('../models/db.js');
 
-/*
-    defines an object which contains functions executed as callback
-    when a client requests for `signup` paths in the server
-*/
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 const signupController = {
 
     /*
-        executed when the client sends an HTTP GET request `/signup`
-        as defined in `../routes/routes.js`
+        renders sign up page
     */
+   
     getSignUp: function (req, res) {
-        res.render('signup');
+        /*
+            if error, reload the page with error
+        */
+        if(req.query.err){
+            var error = req.query.err;
+            res.render('signup',{err: error});
+        }
+        else{
+            res.render('signup');
+        }
     },
 
     /*
-        executed when the client sends an HTTP POST request `/signup`
-        as defined in `../routes/routes.js`
+        if user submits a registration, data will be
+        added to the collection riders
     */
     postSignUp: function (req, res) {
 
-        /*
-            when submitting forms using HTTP POST method
-            the values in the input fields are stored in `req.body` object
-            each <input> element is identified using its `name` attribute
-            Example: the value entered in <input type="text" name="firstName">
-            can be retrieved using `req.body.firstName`
-        */
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
-        var userName = req.body.userName;
+        
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
+        var username = req.body.username;
         var password = req.body.password;
         var email = req.body.email;
         var confirmPassword = req.body.confirmPassword;
         var priorityLevel = req.body.priorityLevel;
+        
+        var query = {username: username};
+        
+        //if password and confirm password matches
+        if(password === confirmPassword){            
+            //checks if username already exists 
+            db.findOne(Rider, query, '', function(result) {
+                    //if user exists, display error
+                if(result!=null){
+                    console.log("User already exists");
+                    res.redirect("/signup?err=UserExists");
+                }
 
-        var user = {
-            firstName: firstName,
-            lastName: lastName,
-            password: password,
-            email: email,
-            userName: userName,
-            confirmPassword: confirmPassword,
-            priorityLevel: priorityLevel
+                /*
+                    if username is unique, inserts data
+                    in the collection riders
+                */
+                else{
+                    bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+                        if(!err){
+                            var user = {
+                                firstname: firstname,
+                                lastname: lastname,
+                                password: hash,
+                                email: email,
+                                username: username,
+                                confirmPassword: hash,
+                                priorityLevel: priorityLevel
+                            }
+        
+                            db.insertOne(Rider, user, function(flag) {
+        
+                                if(flag){
+                                console.log("1 document added");
+                                res.redirect('/');
+                                }
+                                else{
+                                    console.log("Error in input");
+                                    res.redirect('/signup');
+                                }
+                            });
+                        }
+                        else{
+                            console.log('hash went wrong');
+                        }
+                    });
+                }
+            });
         }
 
-        
-
-        var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://localhost:27017/";
-
-            MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
-                if (err) throw err;
-                 var dbo = db.db("arrows-express");
-                dbo.collection("rider").insertOne(user, function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted");
-                db.close();
-        
-            });
-        });
-        
-
-        res.redirect('/');
+        /*
+        Error validation
+        Possible errors:
+        User exists
+        Password does not match
+        */
+        else{
+            console.log("passwords doesnt match");
+            res.redirect("/signup?err=Error:Password");
+        }
         
     }
 }

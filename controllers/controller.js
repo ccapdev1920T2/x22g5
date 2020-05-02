@@ -1,117 +1,80 @@
 
-/*
-    defines an object which contains functions executed as callback
-    when a client requests for `index` paths in the server
-*/
-const Login = require('../models/LoginModel.js');
-
+//import Schemas
+const Rider = require('../models/UserModel.js');
+const Admin = require('../models/AdminModel.js');
+//import db.js
+const db = require('../models/db.js');
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const controller = {
 
-    /*
-        executed when the client sends an HTTP GET request `/favicon.ico`
-        as defined in `../routes/routes.js`
-    */
     getFavicon: function (req, res) {
         res.status(204);
     },
 
-    /*
-        executed when the client sends an HTTP GET request `/`
-        as defined in `../routes/routes.js`
-    */
+    //renders the login page
     getIndex: function (req, res) {
 
-        res.render('login');
-      
-        
-       
+        if(req.query.err){
+     
+            res.render('login',{err: "User not found"});
+        }
+        else{
+            res.render('login');
+        }
+          
     },
 
-
+    //if user submits a username and password
     postIndex: function (req,res){
 
-        
+        var username = req.body.username;
+        var password = req.body.password;
+        //var query = {username: username,password: password};
+        var query = {username: username}
 
-        var userName = req.body.userName;
-
-        var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://localhost:27017/";
-            MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
-            if (err) throw err;
-            var dbo = db.db("arrows-express");
-            var query = { userName: userName };
+        db.findOne(Admin, query, '', function(result) {
+            if(result!=null){
             
+                var firstname = result.firstname;
+                var username = result.username;
+                //if successful, direct to the home page of admin
 
-
-            dbo.collection("admin").find(query).toArray(function(err, result) {
-
-                // if (result == null){
-                //     console.log("NASA RIDER AKO");
-                //     dbo.collection("rider").find(query).toArray(function(err, result) {
-                //     if (err) res.redirect('/');
-                //     console.log("Result found: ",result);
-                      
-                //     var firstname =  result[0].firstName;
-                //     var userName = result[0].userName;
-                        
-                //     res.redirect('/home?firstname='+firstname+'&userName='+userName);
-                //     db.close();
-            
-                //  });
-                // }
-
-                // else{
-                
-                // console.log("NASA ADMIN AKO HAHA");
-                // console.log("Result found: ",result);
-                // var firstname =  result[0].firstName;
-                // var userName = result[0].userName;
-                // res.redirect('/admin?firstname='+firstname+'&userName='+userName);
-                // db.close();
-
-                // }
-                console.log(err);
-                console.log("Before result: ",result);
-
-                if (result.length > 0){
-                    console.log("Result found: ",result);
-                    var firstname =  result[0].firstName;
-                    var userName = result[0].userName;
-                    res.redirect('/admin?firstname='+firstname+'&userName='+userName);
-                    db.close();
+                bcrypt.compare(password, result.password, function(err, res){
+                    if(res === true){
+                        res.redirect('/admin?firstname='+firstname+'&username='+username);
+                    }
+                    else{
+                        console.log("incorrect password");
+                    }
+                });
+            }
+            else{
+                    //find query in the collection of rider
+                    db.findOne(Rider, query, '', function(result) {
                     
-                }
-
-                else{
-                
-                    console.log("NASA RIDER AKO");
-                    dbo.collection("rider").find(query).toArray(function(err, result) {
-                    if (err) res.redirect('/');
-                    console.log("Result found: ",result);
-                      
-                    var firstname =  result[0].firstName;
-                    var userName = result[0].userName;
-                        
-                    res.redirect('/home?firstname='+firstname+'&userName='+userName);
-                    db.close();
+                        if(result == null){
+                            res.redirect("/?err=nouser");
+                        }
+                        else{
+                            var firstname = result.firstname;
+                            var username = result.username;
+                            bcrypt.compare(password, result.password, function(err, comp){
+                                if(comp === true){
+                                    res.redirect('/home?firstname='+firstname+'&username='+username);
+                                }
+                                else{
+                                    console.log("incorrect password");
+                                }
+                            });
+                        }
+                    });
             
-                 });
-
-                }
-    
-         });         
-
-     
-     });
-      
-       
-
+            }
+            
+        });
     }
 }
 
-/*
-    exports the object `controller` (defined above)
-    when another script exports from this file
-*/
 module.exports = controller;

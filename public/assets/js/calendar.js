@@ -155,20 +155,24 @@ $(document).ready(function(){
 
       var rider = $("#rider-user").val();
 
+     
+
       $("#summary-user").text(rider);
+      $("#summary-user1").text(rider);
       $("#summary-date").text(formattedDate);
+      $("#summary-date1").text(formattedDate);
       $("#summary-time").text(time);
+      $("#summary-time1").text(time);
       $("#summary-destination").text(destination);
+      $("#summary-destination1").text(destination);
+
+
     });
 
-    $("#submit").click(function(){
-      window.location.href = "reserve-success-admin";
-    });
-
-    $("#submit-rider").click(function(){
-      window.location.href = "reserve-success";
-    });
+   
 
     // Highlight date
+
+   
 
   })

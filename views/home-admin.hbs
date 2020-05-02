@@ -22,16 +22,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/admin?firstname={{firstname}}&userName={{userName}}">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/admin?firstname={{firstname}}&username={{username}}">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&userName={{userName}}">Reserve</a>
+              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&username={{username}}">Reserve</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&userName={{userName}}">Edit</a>
+            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&username={{username}}">Edit</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&userName={{userName}}">Profile</a>
+            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&username={{username}}">Profile</a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -42,7 +42,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">Settings</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="login">Logout</a>
+              <a class="dropdown-item" href="/">Logout</a>
             </div>
           </li>
         </ul>
@@ -61,13 +61,13 @@
     <div class="container p-5 m-auto text-center">
       <div class="row pt-4">
         <div class="col">
-          <a class="btn btn-outline-success button-font" href="/reserveAdmin?firstname={{firstname}}&userName={{userName}}">Reserve a Ride</a>
+          <a class="btn btn-outline-success button-font" href="/reserveAdmin?firstname={{firstname}}&username={{username}}">Reserve a Ride</a>
         </div>
         <div class="col">
-          <a class="btn btn-outline-success button-font" href="/editAdmin?firstname={{firstname}}&userName={{userName}}">Edit Reservations</a>
+          <a class="btn btn-outline-success button-font" href="/editAdmin?firstname={{firstname}}&username={{username}}">Edit Reservations</a>
         </div>
         <div class="col">
-         <a class="btn btn-outline-success button-font" href="/profileAdmin?firstname={{firstname}}&userName={{userName}}">Check Profile</a>
+         <a class="btn btn-outline-success button-font" href="/profileAdmin?firstname={{firstname}}&username={{username}}">Check Profile</a>
         </div>
       </div>
     </div>

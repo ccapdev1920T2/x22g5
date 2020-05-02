@@ -1,132 +1,153 @@
 
-// import module `database` from `../models/db.js`
+// import db
 const db = require('../models/db.js');
 
-// import module `User` from `../models/UserModel.js`
-const User = require('../models/UserModel.js');
+// import Rider and Reserve Schema
+const Rider = require('../models/UserModel.js');
+const Reserve = require('../models/ReserveModel.js');
 
-var details = 0;
-/*
-    defines an object which contains functions executed as callback
-    when a client requests for `profile` paths in the server
-*/
+//import mongodb
+const mongodb = require('mongodb');
+
+
 const profileController = {
 
     /*
-        executed when the client sends an HTTP GET request `/profile/:idNum`
-        as defined in `../routes/routes.js`
+        renders profile of user 
     */
+
     getProfile: function (req, res) {
-        
 
+        var icon = "/assets/img/rider.png";
+        var query = {username: req.query.username};
 
-        var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://localhost:27017/";
-            MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
-            if (err) throw err;
-            var dbo = db.db("arrows-express");
-            var query = {userName: req.query.userName};
-            console.log("Nasa get profile");
-            // console.log("Username: ",req.query.userName);
-            dbo.collection("rider").find(query).toArray(function(err, result) {
-            if (err) throw err;
-          //  console.log("Result found: ",result);
+        var details = [];
 
-            if(result[0].priorityLevel==1){
+        if(details.length > 0){
+           details = [];
+        }
+
+        /*
+            finds the username of the user in 
+            the collection riders and pushes
+            all details to details array
+        */
+
+        db.findOne(Rider, query, '', function(result) {
+
+            //descriptions for priority
+
+            if(result.priorityLevel == 1){
                 var desc = "Faculty and ASF with Inter-Campus assignments";
             }
-            if(result[0].priorityLevel==2){
+            if(result.priorityLevel == 2){
                 var desc = "Students with Inter-Campus enrolled subjects or thesis";
             }
-            if(result[0].priorityLevel==3){
+            if(result.priorityLevel == 3){
                 var desc = "Researchers";
             }
-            if(result[0].priorityLevel==4){
+            if(result.priorityLevel == 4){
                 var desc = "School administrators";
             }
-            if(result[0].priorityLevel==5){
+            if(result.priorityLevel == 5){
                 var desc = "Employees and Students with Official Business";
             }
-          
-             details = {
-                firstname: result[0].firstName,
-                lastname: result[0].lastName,
-                email: result[0].email,
-                username: result[0].userName,
-                password: result[0].password,
-                priority: result[0].priorityLevel,
-                prioritydesc: desc
-            };   
 
-           // res.render('profile',details);
-            db.close();
+            details.push(result.firstname,result.lastname,result.password,result.email,result.username,
+                result.priorityLevel,desc);
+           
+              
+        });
 
-     }); 
-   
-
-
-     });
-
-     //for table
-     MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
-        if (err) throw err;
-        var resultArray=[];
-        var dbo = db.db("arrows-express");
-        var query = {userName: req.query.userName};
-
-        console.log("Nasa table ako");
-       var cursor = dbo.collection("registration").find(query);
-        cursor.forEach(function(doc,err){
-       resultArray.push(doc);
-
-         }, function(){
-
-        console.log(details);
-        var info=[];
-        for(var i in details)
-            info.push([i,details[i]]);
-       res.render('profile',{items: resultArray, detail: info});
-       db.close();
-            }); 
-       });
-   
-      
-    },
-
-
-
-    postProfile: function (req,res){
-
-
-        var username = req.query.userName;
-        var userName = req.body.username;
-        var firstName = req.body.firstname;
-        var lastName = req.body.lastname;
-        var password = req.body.password;
-        var email = req.body.email;
+        /*
+            displays all reservations of the user
+            by getting all the data from the 
+            collection reserves
+        */
 
         var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://localhost:27017/";
+        //var url = "mongodb://localhost:27017/";
+        var url = "mongodb+srv://arrows_express:password123!@cluster0-i9vbi.mongodb.net/arrows-express?retryWrites=true&w=majority";
 
         MongoClient.connect(url, { useUnifiedTopology: true },function(err, db) {
         if (err) throw err;
+        var resultArray=[];
         var dbo = db.db("arrows-express");
-        var query = { userName: username};
+        var query = {username: req.query.username};
 
-        var newvalues = { $set: {firstName: firstName, lastName: lastName, password: password, email: email, userName: userName} };
-        dbo.collection("rider").updateOne(query, newvalues, function(err, res) {
-         if (err) throw err;
-            console.log("1 document updated");
-            db.close();
-         });
+       
+        var cursor = dbo.collection("reserves").find(query);
+        cursor.forEach(function(doc,err){
+        resultArray.push(doc);
+
+         }, 
+        /*
+            renders all data to profile.hbs
+        */
+        function(){
+        console.log("Details: ", details);
+        res.render('profile',{items: resultArray, firstname: details[0], lastname: details[1],password: details[2],
+                            email: details[3], username: details[4],priority: details[5], prioritydesc: details[6], icon: icon});
+
+            }); 
+            
         });
 
-        res.redirect('/profile?firstname='+firstName+'&userName='+userName);
+
+    },
+
+    /*
+        deletes a reservation by getting
+        the id of a specific reservation
+    */
+
+      deleteProfile: function(req,res){
+
+
+                var query = req.query.id;
+
+                var query = {_id:new mongodb.ObjectId(query)};
+
+              
+                     db.deleteOne(Reserve,query,function(result){
+                         res.send(true);
+                     });
+       
+                
+                
+    },
+    /*
+        if a user wants to update his/her profile
+        also updates the username from the collection
+        reserves by corresponding it to the new username
+
+        Note: all input fields must be populated
+    */
+    postProfile: function (req,res){
+
+        var query = {username: req.query.username};
+        var username = req.query.username;
+        var username = req.body.username;
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
+        var password = req.body.password;
+        var email = req.body.email;
+
+        var newvalues = { $set: {firstname: firstname, lastname: lastname, password: password, email: email, username: username} };
+        var newuser = { $set: {username: username} };
+
+        db.updateOne(Rider,query,newvalues,function(result){
+            if(result!=null){
+                db.updateMany(Reserve,query,newuser,function(result){
+                });
+            }
+        });
+
+        res.redirect('/profile?firstname='+firstname+'&username='+username);
+
     }
+
 }
 
-/*
-    exports the object `profileController` (defined above)
-    when another script exports from this file
-*/
+
 module.exports = profileController;

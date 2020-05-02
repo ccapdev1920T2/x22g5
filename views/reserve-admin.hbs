@@ -23,16 +23,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/admin?firstname={{firstname}}&userName={{username}}">Home</a>
+            <a class="nav-link" href="/admin?firstname={{firstname}}&username={{username}}">Home</a>
           </li>
           <li class="nav-item active">
-              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&userName={{username}}">Reserve<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/reserveAdmin?firstname={{firstname}}&username={{username}}">Reserve<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&userName={{username}}">Edit</a>
+            <a class="nav-link" href="/editAdmin?firstname={{firstname}}&username={{username}}">Edit</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&userName={{username}}">Profile</a>
+            <a class="nav-link" href="/profileAdmin?firstname={{firstname}}&username={{username}}">Profile</a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -53,8 +53,9 @@
     <!-- Flex two columns — left will be calender, right will be time sched -->
     <div class="container text-center p-4">
       <img src="assets/img/title.png" width="510">
+      <center><b style="color:red;">{{err}}</b></center>    
     </div>
-
+ <form method="post">
     <div class="container">
       <div class="row p-auto m-auto text-center">
         <div class="col">
@@ -62,7 +63,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-check fa-lg"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Enter rider username" aria-label="Username" aria-describedby="basic-addon1" id="rider-user">
+            <input type="text" name="riderusername" class="form-control" placeholder="Enter rider username" aria-label="username" aria-describedby="basic-addon1" id="rider-user">
           </div>
         </div>
       </div>
@@ -160,12 +161,13 @@
       </div>
     </div>
 
+   
     <div class="container p-4">
       <div class="row">
         <div class="col">
           <div class="comments">ANY COMMENTS?</div>
           <div class="form-group green-border-focus">
-              <textarea class="form-control rounded-5" rows="5"></textarea>
+              <textarea class="form-control rounded-5" name="comment" rows="5"></textarea>
           </div>
         </div>
       </div>
@@ -176,25 +178,33 @@
       <div class="row">
         <div class="col-3">
           <p style="color:#00703c; font-weight: bold">FOR</p>
-          <p id="summary-user"></p>
+          <p id="summary-user1"></p>
+          <textarea id="summary-user" name="user" style="display: none;"></textarea>
         </div>
         <div class="col-3">
           <p style="color:#00703c; font-weight: bold">DATE</p>
-          <p id="summary-date"></p>
+          <p id="summary-date1"></p>
+          <textarea id="summary-date" name="date" style="display: none;"></textarea>
         </div>
         <div class="col-3">
           <p style="color:#00703c; font-weight: bold">DESTINATION</p>
-          <p id="summary-destination"></p>
+          <p id="summary-destination1"></p>
+          <textarea id="summary-destination" name="destination" style="display: none;"></textarea>
         </div>
         <div class="col-3">
           <p style="color:#00703c; font-weight: bold">TIME</p>
-          <p id="summary-time"></p>
+          <p id="summary-time1"></p>
+          <textarea id="summary-time" name="time" style="display: none;"></textarea>
         </div>
       </div>
     </div>
 
     <div class="container p-5 text-center">
+    
       <button type="submit" class="btn btn-outline-success" id="submit">Submit</button>
     </div>
+    </form>
+
 </body>
+
 </html>

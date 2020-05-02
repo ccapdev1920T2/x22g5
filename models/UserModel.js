@@ -4,21 +4,25 @@ var mongoose = require('mongoose');
 
 // defines the schema for collection `users`
 var UserSchema = new mongoose.Schema({
-    firstName: {
+    firstname: {
         type: String,
         required: true
     },
-    lastName: {
+    lastname: {
         type: String,
-        required: true
-    },
-    email: {
-        type: Number,
         required: true
     },
     password: {
         type: String,
         required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    username: {
+        type:String,
+        required:true
     },
     confirmPassword: {
         type: String,

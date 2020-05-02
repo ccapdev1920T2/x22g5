@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 
 // defines the schema for collection `users`
-var LoginSchema = new mongoose.Schema({
+var AdminSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -11,7 +11,19 @@ var LoginSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    firstname: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    lastname: {
+        type: String,
+        required: true
+    },
 });
 
 /*
@@ -20,4 +32,4 @@ var LoginSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `users` -> plural of the argument `User`
 */
-module.exports = mongoose.model('Login', LoginSchema);
+module.exports = mongoose.model('Admin', AdminSchema);

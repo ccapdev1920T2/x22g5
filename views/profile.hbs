@@ -10,10 +10,14 @@
     
     <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   </head>
+
+
+  </style>
 <body>
     <!-- Header -->
     <nav class="navbar navbar-expand-sm sticky-top navbar-dark" style="background-color: #00703c;">
@@ -21,13 +25,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/home?firstname={{firstname}}&userName={{username}}">Home</a>
+            <a class="nav-link" href="/home?firstname={{firstname}}&username={{username}}">Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/reserve?firstname={{firstname}}&userName={{username}}">Reserve</a>
+              <a class="nav-link" href="/reserve?firstname={{firstname}}&username={{username}}">Reserve</a>
             </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/profile?firstname={{firstname}}&userName={{username}}">Profile<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/profile?firstname={{firstname}}&username={{username}}">Profile<span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -50,7 +54,7 @@
       <div class="row">
         <div class="col-4 position-sticky">
           <div class="profile text-center">
-            <img src="{{this.icon}}" class="mx-auto" id="icon">
+            <img src="{{icon}}" class="mx-auto" id="icon">
             <div class="profile-name">
               {{!-- {{cap lastname}}, {{cap firstname}} --}}
               {{lastname}}, {{firstname}}
@@ -62,7 +66,7 @@
               <br>
               {{prioritydesc}}
             </div>
-            <button type="button" class="btn btn-outline-success edit-profile" id="edit">Edit Profile</button>
+            <a href="#profile-panel" class="btn btn-outline-success edit-profile" id="edit">Edit Profile</a>
           </div>
         </div>
         <div class="col-8">
@@ -80,13 +84,17 @@
                 </tr>
               </thead>
               <tbody>
+                
                 {{# each items}}
                 <tr class ="item">
                   <td>{{this.location}}</td>
                   <td>{{this.date}}</td>
                   <td>{{this.time}}</td>
                   <td>{{this.status}}</td>
+                  <td class="id" style="display: none;">{{this._id}}</td>
                   <td class="pointer"><i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Cancel this reservation" style="color: black;"></i></td>
+                  
+                  
                 </tr>
                 {{/each}}
               </tbody>
@@ -96,38 +104,55 @@
             <div class="reservations-title">YOUR PROFILE</div>
             <div class="reservations-line"></div>
             <form class="m-auto p-3" id="form-profile" method="post">
-              {{#each detail}}
+            
               <div class="form-group">
                 <label for="user">Username</label>
-                <input type="text" class="form-control" id="user" name="username" placeholder="{{username}}">
+                <input type="text" class="form-control" id="user" name="username" value={{username}}>
+          
               </div>
               <div class="form-group">
                 <label for="firstname">First Name</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="{{firstname}}">
+                <input type="text" class="form-control" id="firstname" name="firstname" value={{firstname}}>
               </div>
               <div class="form-group">
                 <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="{{lastname}}">
+                <input type="text" class="form-control" id="lastname" name="lastname" value={{lastname}}>
               </div>
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="{{email}}">
+                <input type="email" class="form-control" id="email" name="email" value={{email}}>
               </div>
               <div class="form-group">
                 <label for="pass">Password</label>
-                <input type="password" class="form-control" id="pass" name="password" placeholder="{{password}}">
+                <input type="password" class="form-control" id="pass" name="password" value={{password}}>
               </div>
               <div class="form-group">
                 <label for="priority">Priority Level</label>
                 <input type="email" class="form-control" id="priority" placeholder="{{priority}} - {{prioritydesc}}" readonly>
                 <small id="emailHelp" class="form-text text-muted">Contact a system administrator for changes.</small>
               </div>
-              {{/each}}
+             
               <button type="submit" class="btn btn-outline-success" id="edit">Submit Change</button>
             </form>
           </div>
         </div>
       </div>
     </div>
+
+    <script type ="text/javascript">
+     
+    $('tbody').on('click','i',function(){
+     var id= $(this).parent().parent().find('.id').text();
+     var $delete =  $(this);
+     $.get('/deleteProfile',{id: id}, function(flag){
+       
+          if(flag){
+            $delete.parent().parent().remove();
+          }
+     });
+     
+    });
+    </script>
 </body>
+
 </html>
