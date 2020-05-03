@@ -41,8 +41,8 @@ const controller = {
                 var username = result.username;
                 //if successful, direct to the home page of admin
 
-                bcrypt.compare(password, result.password, function(err, res){
-                    if(res === true){
+                bcrypt.compare(password, result.password, function(err, comp){
+                    if(comp === true){
                         res.redirect('/admin?firstname='+firstname+'&username='+username);
                     }
                     else{
