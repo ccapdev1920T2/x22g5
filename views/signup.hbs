@@ -64,13 +64,14 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Priority Level</label>
                         <div class="col">
-                            <select id="priorityLevel" name ="priorityLevel"class="form-control">
+                            <select id="priorityLevel" name ="priorityLevel"class="form-control" required>
                                 <option value="">Choose...</option>
                                 <option value="1">1 - Faculty and ASF with Inter-campus assignments</option>
                                 <option value="2">2 - Students with Inter-Campus enrolled subjects or thesis</option>
                                 <option value="3">3 - Researchers</option>
                                 <option value="4">4 - School administrators</option>
                                 <option value="5">5 - Employees and Students with Official Business</option>
+                                <option value="6">6 - Alumni with Official Business</option>
                             </select>
                         </div>
                     </div>
@@ -103,8 +104,8 @@
             document.getElementById("submitButton").setAttribute("disabled", "true");
         }
         else{
-            document.getElementById("password").style.borderColor = "#ced4da";
-            document.getElementById("confirmPassword").style.borderColor = "#ced4da";
+            document.getElementById("password").style.borderColor = "#00703c";
+            document.getElementById("confirmPassword").style.borderColor = "#00703c";
             document.getElementById("submitButton").removeAttribute("disabled");
         }
     }

@@ -1,5 +1,6 @@
 //import db and Rider Schema
 const Rider = require('../models/UserModel.js');
+const Admin = require('../models/AdminModel.js');
 const db = require('../models/db.js');
 
 var bcrypt = require('bcrypt');
