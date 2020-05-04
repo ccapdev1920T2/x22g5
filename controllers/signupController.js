@@ -40,62 +40,60 @@ const signupController = {
         var confirmPassword = req.body.confirmPassword;
         var priorityLevel = req.body.priorityLevel;
         
-        var query = {username: username};
         
         //if password and confirm password matches
         if(password === confirmPassword){            
 
-            db.findOne(Admin, query, '', function(result) {
-                if(result!=null){
-                    console.log("User already exists");
-                    res.redirect("/signup?err=UserExists");
-                }
-                else{
-
-                }
-            });
+            
             //checks if username already exists 
-            db.findOne(Rider, query, '', function(result) {
+            db.findOne(Rider, {$or:[{"username":username},{"email":email}]}, '', function(result) {
                 //if user exists, display error
             if(result!=null){
                 console.log("User already exists");
                 res.redirect("/signup?err=UserExists");
             }
 
-            /*
-                if username is unique, inserts data
-                in the collection riders
-            */
             else{
-                bcrypt.hash(req.body.password, saltRounds, function(err, hash){
-                    if(!err){
-                        var user = {
-                            firstname: firstname,
-                            lastname: lastname,
-                            password: hash,
-                            email: email,
-                            username: username,
-                            confirmPassword: hash,
-                            priorityLevel: priorityLevel
-                        }
-    
-                        db.insertOne(Rider, user, function(flag) {
-    
-                            if(flag){
-                            console.log("1 document added");
-                            res.redirect('/');
-                            }
-                            else{
-                                console.log("Error in input");
-                                res.redirect('/signup');
-                            }
-                        });
+
+                db.findOne(Admin,{$or:[{"username":username},{"email":email}]}, '', function(result) {
+                    if(result!=null){
+                        console.log("User already exists");
+                        res.redirect("/signup?err=UserExists");
                     }
                     else{
-                        console.log('hash went wrong');
+                        bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+                                    if(!err){
+                                        var user = {
+                                            firstname: firstname,
+                                            lastname: lastname,
+                                            password: hash,
+                                            email: email,
+                                            username: username,
+                                            confirmPassword: hash,
+                                            priorityLevel: priorityLevel
+                                        }
+                    
+                                        db.insertOne(Rider, user, function(flag) {
+                    
+                                            if(flag){
+                                            console.log("1 document added");
+                                            res.redirect('/');
+                                            }
+                                            else{
+                                                console.log("Error in input");
+                                                res.redirect('/signup');
+                                            }
+                                        });
+                                    }
+                                    else{
+                                        console.log('hash went wrong');
+                                    }
+                                });
                     }
                 });
+
             }
+
         });
         }
 

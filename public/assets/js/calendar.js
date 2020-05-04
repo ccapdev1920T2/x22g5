@@ -149,7 +149,7 @@ $(document).ready(function(){
       
       time = $(this).text();
       var alertstring = 'You chose ' + time + ' on ' + month[date.getMonth()] + ' ' + day + ', ' + date.getFullYear() +  ' and route is ' + destination
-      var formattedDate = date.getFullYear() + "-" + date.getMonth()+1 + "-" + day;
+      var formattedDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + day;
 
       alert(alertstring);
 

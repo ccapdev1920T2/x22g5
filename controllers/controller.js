@@ -46,7 +46,7 @@ const controller = {
                         res.redirect('/admin?firstname='+firstname+'&username='+username);
                     }
                     else{
-                        console.log("incorrect password");
+                        res.redirect("/?err=nouser");
                     }
                 });
             }
@@ -65,7 +65,7 @@ const controller = {
                                     res.redirect('/home?firstname='+firstname+'&username='+username);
                                 }
                                 else{
-                                    console.log("incorrect password");
+                                    res.redirect("/?err=nouser");
                                 }
                             });
                         }

@@ -52,10 +52,14 @@ const profileController = {
             if(result.priorityLevel == 5){
                 var desc = "Employees and Students with Official Business";
             }
+            if(result.priorityLevel == 6){
+                var desc = "Alumni with Official Business";
+            }
 
             details.push(result.firstname,result.lastname,result.password,result.email,result.username,
                 result.priorityLevel,desc);
            
+                
               
         });
 

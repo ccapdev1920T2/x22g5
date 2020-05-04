@@ -48,6 +48,8 @@ const editController = {
             /*
                 renders all details in edit-admin.hbs
             */
+
+            
             function(){
             res.render('edit-admin',{infos: resultArray,adminfirstname: details[0], adminusername: details[1],firstname: details[0], username: details[1]});   
             db.close();
