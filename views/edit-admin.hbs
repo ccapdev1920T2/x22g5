@@ -11,10 +11,8 @@
     <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-  
   </head>
 <body>
     <!-- Header -->
@@ -93,12 +91,50 @@
                       {{# each infos}}
                       <tr class="info">
                         <td>{{this.username}}</td>
-                        <td><input type="text" value="{{this.location}}"  class="location"name="location" size="10"></td>
-                        <td><input type="text" value="{{this.date}}" class="date" name="date" size="10"></td>
-                        <td><input type="text" value="{{this.time}}" class="time" name="time" size="10"></td>
-                        <td><input type="text" value="{{this.status}}"  class="status" name="status" size="10"></td>
-                         <td class="id" style="display: none;">{{this._id}}</td>
+
+                        <td>
+                          <select class="form-control location" name="location" style="cursor: pointer;">
+                            {{#equals this.location "MNL > LGN"}}
+                              <option selected id="loc1" value="MNL > LGN">MNL > LGN</option>
+                              <option id="loc2" value="LGN > MNL">LGN > MNL</option>
+                            {{/equals}}
+                            {{#equals this.location "LGN > MNL"}}
+                              <option selected id="loc1" value="LGN > MNL">LGN > MNL</option>
+                              <option id="loc2" value="MNL > LGN">MNL > LGN</option>
+                            {{/equals}}
+                          </select>
+                        </td>
+
+                        <td><input type="text" value="{{this.date}}" class="date" name="date" onfocus="(this.type='date')" onblur="(this.type='text')" style="cursor: pointer;"></td> 
+
+                        <td><input type="text" value="{{this.time}}" class="time" name="time" onfocus="(this.type='time')" onblur="(this.type='text')" style="cursor: pointer;"></td>
+
+                        <td>
+                          <select class="form-control status" name="status" style="cursor: pointer;">
+                            {{#equals this.status "Approved"}}
+                              <option selected id="stats1" value="Approved">Approved</option>
+                              <option id="stats2" value="Rejected">Rejected</option>
+                              <option id="stats3" value="Pending">Pending</option>
+                            {{/equals}}
+
+                            {{#equals this.status "Rejected"}}
+                              <option selected id="stats1" value="Rejected">Rejected</option>
+                              <option id="stats2" value="Approved">Approved</option>
+                              <option id="stats3" value="Pending">Pending</option>
+                            {{/equals}}
+
+                            {{#equals this.status "Pending"}}
+                              <option selected id="stats1" value="Pending">Pending</option>
+                              <option id="stats2" value="Approved">Approved</option>
+                              <option id="stats3" value="Rejected">Rejected</option>
+                            {{/equals}}
+                          </select>
+                        </td>
+
+                        <td class="id" style="display: none;">{{this._id}}</td>
+
                         <td class="pointer"><i class="far fa-edit"></i></td>
+
                       </tr>
                       {{/each}}
                     </tbody>
@@ -111,7 +147,6 @@
     </div>
 
     <script type ="text/javascript">
-     
         $('tbody').on('click','i',function(){
         var id= $(this).parent().parent().find('.id').text();
         var status= $(this).parent().parent().find('.status').val();
@@ -120,12 +155,8 @@
          var location= $(this).parent().parent().find('.location').val();
           alert('You have successfully updated.');
         $.get('/editReservations',{id: id, status: status, time:time, date:date,location:location}, function(flag){
-
-        
-     });
-     
-    });
-
+          });
+        });
     </script>
 
 </body>
