@@ -80,7 +80,7 @@ const reserveadminController = {
                     }
                 });
                 
-                 res.redirect('/admin?firstname='+firstname+'&username='+userName);
+                 res.redirect('/reserveAdminSuccess?firstname='+firstname+'&username='+userName);
 
             }
          });

@@ -50,7 +50,7 @@ const reserveController = {
                         console.log("1 document added");
                     }
             });
-                res.redirect('/home?firstname='+firstname+'&username='+username);
+                res.redirect('/reserveSuccess?firstname='+firstname+'&username='+username);
 
     }
 

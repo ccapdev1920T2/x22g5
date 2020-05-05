@@ -21,6 +21,9 @@ const editController = require('../controllers/editController.js');
 const reserveadminController = require('../controllers/reserveadminController.js');
 
 
+const reserveSuccessController = require('../controllers/reserveSuccessController.js');
+
+
 
 
 const app = express();
@@ -67,7 +70,9 @@ app.get('/reserveAdmin', reserveadminController.getadminReserve);
 
 app.post('/reserveAdmin', reserveadminController.postadminReserve);
 
+app.get('/reserveAdminSuccess', reserveSuccessController.getReserveSuccessAdmin);
 
+app.get('/reserveSuccess', reserveSuccessController.getReserveSuccess);
 
 
 module.exports = app;
