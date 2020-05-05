@@ -52,31 +52,32 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Password</label>
                         <div class="col">
-                            <input type="password" class="form-control" name="password" id="password" required>
+                            <input type="password" class="form-control" name="password" id="password" onkeyup="passMatch()" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Confirm Password</label>
                         <div class="col">
-                            <input type="password" class="form-control" name ="confirmPassword"id="confirmPassword" required>
+                            <input type="password" class="form-control" name ="confirmPassword"id="confirmPassword" onkeyup="passMatch()" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Priority Level</label>
                         <div class="col">
-                            <select id="priorityLevel" name ="priorityLevel"class="form-control">
+                            <select id="priorityLevel" name ="priorityLevel"class="form-control" required>
                                 <option value="">Choose...</option>
                                 <option value="1">1 - Faculty and ASF with Inter-campus assignments</option>
                                 <option value="2">2 - Students with Inter-Campus enrolled subjects or thesis</option>
                                 <option value="3">3 - Researchers</option>
                                 <option value="4">4 - School administrators</option>
                                 <option value="5">5 - Employees and Students with Official Business</option>
+                                <option value="6">6 - Alumni with Official Business</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row align-items-center">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success" id="submitButton" disabled>Submit</button>
 
                         </div>
                     </div>
@@ -90,4 +91,23 @@
         </div>
     </div>
 </body>
+
+<script>
+    function passMatch(){
+        console.log(1);
+        var pass1 = document.getElementById("password").value;
+        var pass2 = document.getElementById("confirmPassword").value;
+
+        if(pass1 !== pass2){
+            document.getElementById("password").style.borderColor = "#E34234";
+            document.getElementById("confirmPassword").style.borderColor = "#E34234";
+            document.getElementById("submitButton").setAttribute("disabled", "true");
+        }
+        else{
+            document.getElementById("password").style.borderColor = "#00703c";
+            document.getElementById("confirmPassword").style.borderColor = "#00703c";
+            document.getElementById("submitButton").removeAttribute("disabled");
+        }
+    }
+</script>
 </html>

@@ -92,7 +92,14 @@
                   <td>{{this.time}}</td>
                   <td>{{this.status}}</td>
                   <td class="id" style="display: none;">{{this._id}}</td>
-                  <td class="pointer"><i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Cancel this reservation" style="color: black;"></i></td>
+
+                  {{#equals this.status "Pending"}}
+                    <td class="pointer" ><i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Cancel this reservation" style="color: black;"></i></td>
+                  {{/equals}}
+                  {{#equals this.status "Approved"}}
+                    <td class="pointer" ><i class="far fa-times-circle fa-lg" data-toggle="tooltip" data-placement="top" title="Cancel this reservation" style="color: black;"></i></td>
+                  {{/equals}}
+                  
                   
                   
                 </tr>
