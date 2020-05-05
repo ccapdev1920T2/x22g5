@@ -1,5 +1,6 @@
-# DLSU Arrows Express Line 1 Reservation [x22g5]
-This is a web application that allows students and faculty members to make a reservation for the Arrows Express Line 1 shuttle service of DLSU.
+# DLSU Arrows Express Line 1 Reservation
+<p align="center"><img src="public/assets/img/weblogo-green.png" width="350"></p>
+DLSU Arrows Express Line 1 Reservation is a web application that allows students and faculty members to make a reservation for the Arrows Express Line 1 shuttle service of De La Salle University.
 
 ## Features
 ### Universal
@@ -85,6 +86,7 @@ https://arrows-express.herokuapp.com
 * Node.js
 * JQuery
 * MongoDB
+* Mongoose
 
 ## Authors
 
