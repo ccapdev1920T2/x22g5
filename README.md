@@ -32,17 +32,27 @@ A step-by-step process on how to run the web application
 
 1. Open Terminal or Command Prompt
 
-2. Clone repository
+2. Set desktop as directory
+``````
+cd desktop
+``````
+
+3. Clone repository
 ``````
 git clone https://github.com/ccapdev1920T2/x22g5.git
 ``````
 
-3. Install npm packages
+4. Set x22g5 folder as directory
+``````
+cd x22g5
+``````
+
+5. Install npm packages
 ``````
 npm install
 ``````
 
-4. Run add_data.js (creates database and admin user)
+6. Run add_data.js (creates database and admin user)
 ``````
 node add_data.js
 
@@ -54,17 +64,17 @@ email: arren_antioquia@dlsu.edu.ph
 lastname: Antioquia
 ``````
 
-5. Run index.js
+7. Run index.js
 ``````
 node index.js
 ``````
 
-6. Open browser and access application
+8. Open browser and access application
 ``````
 localhost:3000
 ``````
 
-7. Or, you can access the web application through Heroku
+9. Or, you can access the web application through Heroku
 ``````
 https://arrows-express.herokuapp.com
 ``````
@@ -73,7 +83,7 @@ https://arrows-express.herokuapp.com
 * Bootstrap
 * FontAwesome
 * Node.js
-* AngularJS
+* JQuery
 * MongoDB
 
 ## Authors
