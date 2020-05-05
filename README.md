@@ -64,6 +64,11 @@ node index.js
 localhost:3000
 ``````
 
+7. Or, you can access the web application through Heroku
+``````
+https://arrows-express.herokuapp.com
+``````
+
 ## Built with
 * Bootstrap
 * FontAwesome
